@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mega Dex — Meu Progresso de Mega Evoluções</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⚡</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+<div class="wrap">
+
+  <header class="top">
+    <div class="title-block">
+      <h1>Mega Dex</h1>
+      <p>Marque cada Mega Evolução que você já possui em Pokémon GO. Seu progresso fica salvo neste arquivo, no seu navegador — e também pode ser exportado como backup.</p>
+    </div>
+    <div class="progress-card">
+      <div class="num" id="progressNum">0<span class="total">/ 62 capturadas</span></div>
+      <div class="bar-track"><div class="bar-fill" id="progressBar" style="width:0%"></div></div>
+      <div class="label" id="progressLabel">0% completo</div>
+    </div>
+  </header>
+
+  <div class="controls">
+    <div class="search">
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+      <input type="text" id="searchInput" placeholder="Buscar por nome ou número...">
+    </div>
+    <div class="filters">
+      <button class="active" data-filter="all">Todas (62)</button>
+      <button data-filter="owned">Tenho</button>
+      <button data-filter="missing">Faltam</button>
+    </div>
+    <button class="icon-btn" id="exportBtn" title="Baixar um arquivo de backup do seu progresso">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+      Exportar
+    </button>
+    <button class="icon-btn" id="importBtn" title="Carregar um backup salvo anteriormente">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="17 8 12 3 7 8"></polyline><line x1="12" y1="3" x2="12" y2="15"></line></svg>
+      Importar
+    </button>
+    <input type="file" id="fileInput" class="file-input" accept="application/json,.json">
+    <button class="icon-btn danger" id="resetBtn">Limpar progresso</button>
+  </div>
+
+  <div class="grid" id="grid"></div>
+
+  <footer>
+    Lista de Mega Evoluções e Reversões Primais disponíveis (e anunciadas) em Pokémon GO.<br>
+    Referência de dados: <a href="https://www.dittobase.com/pokemon-go/best-attackers/mega" target="_blank" rel="noopener">dittobase.com</a> · Imagens: PokeMiners / Niantic, The Pokémon Company
+  </footer>
+
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script src="js/app.js"></script>
+
+</body>
+</html>
