@@ -1,63 +1,279 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Mega Dex — Meu Progresso de Mega Evoluções</title>
-<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⚡</text></svg>">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/styles.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Mega Dex — Meu Progresso de Mega Evoluções</title>
+
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⚡</text></svg>">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+    <!-- Biblioteca usada somente para a exportação visual em PNG -->
+    <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+
+    <link rel="stylesheet" href="css/styles.css">
 </head>
+
 <body>
 
 <div class="wrap">
 
-  <header class="top">
-    <div class="title-block">
-      <h1>Mega Dex</h1>
-      <p>Marque cada Mega Evolução que você já possui em Pokémon GO. Seu progresso fica salvo neste arquivo, no seu navegador — e também pode ser exportado como backup.</p>
-    </div>
-    <div class="progress-card">
-      <div class="num" id="progressNum">0<span class="total">/ 62 capturadas</span></div>
-      <div class="bar-track"><div class="bar-fill" id="progressBar" style="width:0%"></div></div>
-      <div class="label" id="progressLabel">0% completo</div>
-    </div>
-  </header>
+    <header class="top">
+        <div class="title-block">
+            <h1>Mega Dex</h1>
+            <p>
+                Marque cada Mega Evolução que você já possui em Pokémon GO.
+                Seu progresso fica salvo neste navegador.
+            </p>
+        </div>
 
-  <div class="controls">
-    <div class="search">
-      <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
-      <input type="text" id="searchInput" placeholder="Buscar por nome ou número...">
-    </div>
-    <div class="filters">
-      <button class="active" data-filter="all">Todas (62)</button>
-      <button data-filter="owned">Tenho</button>
-      <button data-filter="missing">Faltam</button>
-    </div>
-    <button class="icon-btn" id="exportBtn" title="Baixar um arquivo de backup do seu progresso">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
-      Exportar
-    </button>
-    <button class="icon-btn" id="importBtn" title="Carregar um backup salvo anteriormente">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="17 8 12 3 7 8"></polyline><line x1="12" y1="3" x2="12" y2="15"></line></svg>
-      Importar
-    </button>
-    <input type="file" id="fileInput" class="file-input" accept="application/json,.json">
-    <button class="icon-btn danger" id="resetBtn">Limpar progresso</button>
-  </div>
+        <div class="progress-card">
+            <div class="num" id="progressNum">
+                0<span class="total">/ 62 capturadas</span>
+            </div>
 
-  <div class="grid" id="grid"></div>
+            <div class="bar-track">
+                <div class="bar-fill" id="progressBar" style="width:0%"></div>
+            </div>
 
-  <footer>
-    Lista de Mega Evoluções e Reversões Primais disponíveis (e anunciadas) em Pokémon GO.<br>
-    Referência de dados: <a href="https://www.dittobase.com/pokemon-go/best-attackers/mega" target="_blank" rel="noopener">dittobase.com</a> · Imagens: PokeMiners / Niantic, The Pokémon Company
-  </footer>
+            <div class="label" id="progressLabel">
+                0% completo
+            </div>
+        </div>
+    </header>
+
+    <div class="controls">
+
+        <div class="search">
+            <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+            >
+                <circle cx="11" cy="11" r="8"></circle>
+                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+            </svg>
+
+            <input
+                type="text"
+                id="searchInput"
+                placeholder="Buscar por nome ou número..."
+                autocomplete="off"
+            >
+        </div>
+
+        <button class="filter-toggle" id="filterToggle" type="button">
+            <span>Filtros</span>
+            <span class="filter-badge" id="filterBadge">0</span>
+            <span class="chevron">⌄</span>
+        </button>
+
+        <div class="export-menu">
+            <button class="export-toggle" id="exportToggle" type="button">
+                <span>Exportar</span>
+                <span class="chevron">⌄</span>
+            </button>
+
+            <div class="export-dropdown" id="exportDropdown">
+
+                <div class="menu-title">Imagem</div>
+
+                <button type="button" id="exportPngBtn">
+                    🖼️ Exportar PNG
+                </button>
+
+                <button type="button" id="exportSvgBtn">
+                    ✨ Exportar SVG
+                </button>
+
+                <div class="menu-title">Backup</div>
+
+                <button type="button" id="exportJsonBtn">
+                    💾 Exportar progresso
+                </button>
+
+                <button type="button" id="importJsonBtn">
+                    📂 Importar progresso
+                </button>
+
+                <input
+                    type="file"
+                    id="importFile"
+                    accept=".json,application/json"
+                    hidden
+                >
+            </div>
+        </div>
+
+        <button class="reset-btn" id="resetBtn" type="button">
+            Limpar progresso
+        </button>
+
+    </div>
+
+    <div class="filter-panel-wrap" id="filterPanelWrap">
+
+        <div class="filter-panel-inner">
+
+            <div class="filter-panel">
+
+                <div class="filter-header">
+
+                    <div>
+                        <h2>Filtros avançados</h2>
+                        <p>
+                            Você pode combinar vários filtros ao mesmo tempo.
+                        </p>
+                    </div>
+
+                    <button
+                        class="clear-filters"
+                        id="clearFiltersBtn"
+                        type="button"
+                    >
+                        Limpar filtros
+                    </button>
+
+                </div>
+
+                <div class="filter-section">
+
+                    <div class="filter-section-title">
+                        Status
+                    </div>
+
+                    <div class="filter-options">
+
+                        <label class="filter-chip status-chip active">
+                            <input
+                                type="radio"
+                                name="statusFilter"
+                                value="all"
+                                checked
+                            >
+                            Todas
+                        </label>
+
+                        <label class="filter-chip status-chip">
+                            <input
+                                type="radio"
+                                name="statusFilter"
+                                value="owned"
+                            >
+                            Tenho
+                        </label>
+
+                        <label class="filter-chip status-chip">
+                            <input
+                                type="radio"
+                                name="statusFilter"
+                                value="missing"
+                            >
+                            Faltam
+                        </label>
+
+                    </div>
+
+                </div>
+
+                <div class="filter-section">
+
+                    <div class="filter-section-title">
+                        Categoria
+                    </div>
+
+                    <div class="filter-options">
+
+                        <label class="filter-chip category-chip">
+                            <input
+                                type="checkbox"
+                                value="normal"
+                            >
+                            Normal
+                        </label>
+
+                        <label class="filter-chip category-chip">
+                            <input
+                                type="checkbox"
+                                value="pseudo"
+                            >
+                            Pseudo-lendário
+                        </label>
+
+                        <label class="filter-chip category-chip">
+                            <input
+                                type="checkbox"
+                                value="legendary"
+                            >
+                            Lendário
+                        </label>
+
+                        <label class="filter-chip category-chip">
+                            <input
+                                type="checkbox"
+                                value="mythical"
+                            >
+                            Mítico
+                        </label>
+
+                    </div>
+
+                </div>
+
+                <div class="filter-section">
+
+                    <div class="filter-section-title">
+                        Tipagem da Mega Evolução
+                    </div>
+
+                    <div
+                        class="filter-options"
+                        id="typeFilterOptions"
+                    ></div>
+
+                </div>
+
+                <div class="active-summary" id="activeSummary">
+                    <strong>Filtros ativos:</strong> nenhum
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="grid" id="grid"></div>
+
+    <footer>
+        Lista de Mega Evoluções e Reversões Primais disponíveis (e anunciadas) em Pokémon GO.
+        <br>
+        Dados e imagens de referência:
+        <a
+            href="https://www.dittobase.com/pokemon-go/best-attackers/mega"
+            target="_blank"
+            rel="noopener"
+        >
+            dittobase.com
+        </a>
+
+        <div class="watermark">
+            X: @Jopdot · Insta: @coutinho_.davi · GitHub: DaviCoutinho-19
+        </div>
+    </footer>
 
 </div>
 
 <div class="toast" id="toast"></div>
+
+<!-- Área isolada usada na exportação -->
+<div class="export-stage" id="exportStage"></div>
 
 <script src="js/app.js"></script>
 

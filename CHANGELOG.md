@@ -1,6 +1,15 @@
 # Histórico de alterações
 
-As datas registram a publicação das etapas de um histórico reconstruído, sem atribuir datas originais de desenvolvimento.
+As datas registram a publicação de cada atualização.
+
+## Etapa 2 — Filtros e exportação — 13/10/2026
+
+- Painel de filtros por status, categoria e tipo de Pokémon.
+- Imagens externas com alternativa de carregamento.
+- Exportação da coleção filtrada em PNG e SVG.
+- Marca d'água na página e nas exportações.
+- Importação compatível com os backups JSON da primeira versão.
+- HTML, CSS e JavaScript mantidos em arquivos separados.
 
 ## Etapa 1 — Tracker Pokémon GO — 13/10/2026
 
