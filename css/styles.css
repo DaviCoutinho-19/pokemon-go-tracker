@@ -12,6 +12,7 @@
             --accent-soft: #8a4fe0;
             --gold: #ffc65c;
             --owned: #4fe0c4;
+            --waiting: #ffc65c;
             --text: #f2eefc;
             --text-muted: #9c8fc0;
             --text-faint: #6a5d8f;
@@ -35,10 +36,6 @@
             font-family: 'Inter', system-ui, sans-serif;
         }
 
-        body.exporting {
-            background: #0e0a1a;
-        }
-
         ::selection {
             background: var(--accent-soft);
             color: white;
@@ -53,6 +50,59 @@
             max-width: 1180px;
             margin: 0 auto;
             padding: 28px 20px 70px;
+        }
+
+        /* ---------- Abas ---------- */
+
+        .tabs {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 22px;
+            padding: 6px;
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            background: rgba(23, 17, 38, 0.7);
+        }
+
+        .tab-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 9px;
+            flex: 1 1 180px;
+            justify-content: center;
+            padding: 11px 16px;
+            border: 1px solid transparent;
+            border-radius: 10px;
+            background: transparent;
+            color: var(--text-muted);
+            font-family: 'Rajdhani', sans-serif;
+            font-size: 16px;
+            font-weight: 600;
+            letter-spacing: 0.3px;
+            cursor: pointer;
+            transition: background 0.18s, color 0.18s, border-color 0.18s;
+        }
+
+        .tab-btn:hover {
+            color: var(--text);
+            background: var(--surface-hover);
+        }
+
+        .tab-btn.active {
+            border-color: rgba(176, 107, 255, 0.55);
+            background: linear-gradient(120deg, rgba(138, 79, 224, 0.42), rgba(176, 107, 255, 0.26));
+            color: #fff;
+        }
+
+        .tab-count {
+            padding: 2px 8px;
+            border-radius: 999px;
+            background: rgba(255, 255, 255, 0.09);
+            color: #dbb9ff;
+            font-family: 'Inter', sans-serif;
+            font-size: 11px;
+            font-weight: 600;
         }
 
         header.top {
@@ -80,7 +130,7 @@
         }
 
         .title-block p {
-            max-width: 46ch;
+            max-width: 52ch;
             margin: 8px 0 0;
             color: var(--text-muted);
             font-size: 14.5px;
@@ -113,6 +163,8 @@
         }
 
         .progress-card .bar-track {
+            position: relative;
+            display: flex;
             height: 9px;
             margin-top: 10px;
             overflow: hidden;
@@ -122,8 +174,13 @@
 
         .progress-card .bar-fill {
             height: 100%;
-            border-radius: 6px;
-            background: linear-gradient(90deg, var(--accent-soft), var(--accent) 60%, var(--gold));
+            background: linear-gradient(90deg, var(--accent-soft), var(--accent) 60%, var(--owned));
+            transition: width 0.35s ease;
+        }
+
+        .progress-card .bar-wait {
+            height: 100%;
+            background: linear-gradient(90deg, rgba(255, 198, 92, 0.75), var(--waiting));
             transition: width 0.35s ease;
         }
 
@@ -301,6 +358,52 @@
             text-transform: uppercase;
         }
 
+        /* ---------- Legenda de marcações ---------- */
+
+        .legend {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 16px;
+            margin-bottom: 14px;
+            padding: 11px 15px;
+            border: 1px solid var(--border);
+            border-radius: 11px;
+            background: rgba(23, 17, 38, 0.6);
+            color: var(--text-muted);
+            font-size: 12.5px;
+        }
+
+        .legend.hidden {
+            display: none;
+        }
+
+        .legend-item {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+        }
+
+        .legend-swatch {
+            width: 12px;
+            height: 12px;
+            border-radius: 4px;
+            border: 1.5px solid currentColor;
+        }
+
+        .legend-swatch.owned {
+            color: var(--owned);
+            background: rgba(79, 224, 196, 0.25);
+        }
+
+        .legend-swatch.waiting {
+            color: var(--waiting);
+            background: rgba(255, 198, 92, 0.25);
+        }
+
+        .legend-hint {
+            color: var(--text-faint);
+        }
+
         .filter-panel-wrap {
             display: grid;
             grid-template-rows: 0fr;
@@ -371,6 +474,10 @@
 
         .filter-section + .filter-section {
             margin-top: 18px;
+        }
+
+        .filter-section.hidden {
+            display: none;
         }
 
         .filter-section-title {
@@ -474,10 +581,18 @@
             background: var(--surface-hover);
         }
 
+        /* Verde: já tenho */
         .card.owned {
             border-color: rgba(79, 224, 196, 0.55);
             background: linear-gradient(160deg, rgba(79, 224, 196, 0.09), var(--surface) 60%);
             box-shadow: 0 0 0 1px rgba(79, 224, 196, 0.15), 0 8px 20px rgba(0, 0, 0, 0.35);
+        }
+
+        /* Amarelo: tenho, mas aguardando evento para evoluir */
+        .card.waiting {
+            border-color: rgba(255, 198, 92, 0.6);
+            background: linear-gradient(160deg, rgba(255, 198, 92, 0.1), var(--surface) 60%);
+            box-shadow: 0 0 0 1px rgba(255, 198, 92, 0.18), 0 8px 20px rgba(0, 0, 0, 0.35);
         }
 
         .card .dex {
@@ -495,9 +610,6 @@
             position: absolute;
             top: 6px;
             right: 8px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
             width: 20px;
             height: 20px;
             border: 1.5px solid var(--border);
@@ -511,14 +623,27 @@
             background: var(--owned);
         }
 
+        .card.waiting .check {
+            border-color: var(--waiting);
+            background: var(--waiting);
+        }
+
         .card .check svg {
+            position: absolute;
+            top: 50%;
+            left: 50%;
             width: 11px;
             height: 11px;
+            transform: translate(-50%, -50%);
             opacity: 0;
             transition: opacity 0.15s;
         }
 
-        .card.owned .check svg {
+        .card.owned .check .icon-check {
+            opacity: 1;
+        }
+
+        .card.waiting .check .icon-wait {
             opacity: 1;
         }
 
@@ -538,6 +663,11 @@
             filter: drop-shadow(0 6px 14px rgba(178, 107, 255, 0.35));
         }
 
+        .card.waiting img {
+            opacity: 1;
+            filter: drop-shadow(0 6px 14px rgba(255, 198, 92, 0.35));
+        }
+
         .card .name {
             min-height: 35px;
             color: var(--text-muted);
@@ -547,7 +677,8 @@
             line-height: 1.15;
         }
 
-        .card.owned .name {
+        .card.owned .name,
+        .card.waiting .name {
             color: var(--text);
         }
 
@@ -633,6 +764,8 @@
             transform: translateY(0);
         }
 
+        /* ---------- Área de exportação ---------- */
+
         .export-stage {
             position: fixed;
             left: -100000px;
@@ -660,15 +793,18 @@
             border-bottom: 1px solid rgba(178, 120, 255, 0.2);
         }
 
+        /*
+         * IMPORTANTE: o título da exportação usa cor sólida.
+         * Gradiente com "background-clip: text" NÃO é suportado pelo
+         * html2canvas e era desenhado como uma caixa colorida no PNG.
+         */
         .export-title {
             margin: 0;
+            color: #e3d3ff;
             font-family: 'Rajdhani', sans-serif;
             font-size: 48px;
             font-weight: 700;
-            background: linear-gradient(120deg, #e7d9ff 10%, #b06bff 55%, #ffc65c 100%);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
+            letter-spacing: 0.5px;
         }
 
         .export-subtitle {
@@ -714,6 +850,31 @@
             font-size: 11px;
         }
 
+        .export-pill.owned-pill {
+            border-color: rgba(79, 224, 196, 0.45);
+            color: #9ff0e0;
+        }
+
+        .export-pill.wait-pill {
+            border-color: rgba(255, 198, 92, 0.45);
+            color: #ffdf9e;
+        }
+
+        /*
+         * Marcadores desenhados com CSS/SVG em vez de glifos como "✓".
+         * Glifos dependem de fontes instaladas e saem como quadradinhos
+         * em alguns sistemas quando o html2canvas rasteriza a imagem.
+         */
+        .export-pill .dot {
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            margin-right: 6px;
+            border-radius: 50%;
+            background: currentColor;
+            vertical-align: middle;
+        }
+
         .export-grid {
             display: grid;
             grid-template-columns: repeat(6, 1fr);
@@ -734,11 +895,33 @@
             background: linear-gradient(160deg, rgba(79, 224, 196, 0.09), rgba(29, 22, 51, 0.94) 60%);
         }
 
+        .export-pokemon.waiting {
+            border-color: rgba(255, 198, 92, 0.55);
+            background: linear-gradient(160deg, rgba(255, 198, 92, 0.1), rgba(29, 22, 51, 0.94) 60%);
+        }
+
         .export-dex {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
             color: #6a5d8f;
             font-family: 'Rajdhani', sans-serif;
             font-size: 11px;
             text-align: left;
+        }
+
+        .export-mark {
+            font-family: 'Inter', sans-serif;
+            font-size: 11px;
+            font-weight: 700;
+        }
+
+        .export-mark.owned {
+            color: #4fe0c4;
+        }
+
+        .export-mark.waiting {
+            color: #ffc65c;
         }
 
         .export-pokemon img {

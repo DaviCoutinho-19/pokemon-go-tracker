@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Mega Dex — Meu Progresso de Mega Evoluções</title>
+    <title>Pokémon GO — Meus Progressos</title>
 
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⚡</text></svg>">
 
@@ -22,10 +22,30 @@
 
 <div class="wrap">
 
+    <!-- Abas -->
+    <nav class="tabs" id="tabs" role="tablist">
+
+        <button class="tab-btn active" type="button" role="tab" data-tab="mega">
+            <span>⚡ Mega Dex</span>
+            <span class="tab-count" data-count="mega">0/62</span>
+        </button>
+
+        <button class="tab-btn" type="button" role="tab" data-tab="safari">
+            <span>🎒 Safari Urbano</span>
+            <span class="tab-count" data-count="safari">0/29</span>
+        </button>
+
+        <button class="tab-btn" type="button" role="tab" data-tab="starters">
+            <span>✨ Shundos Iniciais</span>
+            <span class="tab-count" data-count="starters">0/81</span>
+        </button>
+
+    </nav>
+
     <header class="top">
         <div class="title-block">
-            <h1>Mega Dex</h1>
-            <p>
+            <h1 id="pageTitle">Mega Dex</h1>
+            <p id="pageSubtitle">
                 Marque cada Mega Evolução que você já possui em Pokémon GO.
                 Seu progresso fica salvo neste navegador.
             </p>
@@ -38,6 +58,7 @@
 
             <div class="bar-track">
                 <div class="bar-fill" id="progressBar" style="width:0%"></div>
+                <div class="bar-wait" id="progressWaitBar" style="width:0%"></div>
             </div>
 
             <div class="label" id="progressLabel">
@@ -117,6 +138,25 @@
 
     </div>
 
+    <!-- Legenda (aparece só nas abas com o estado "aguardando evento") -->
+    <div class="legend hidden" id="legend">
+
+        <span class="legend-item">
+            <span class="legend-swatch owned"></span>
+            <strong>1 clique</strong> — já tenho
+        </span>
+
+        <span class="legend-item">
+            <span class="legend-swatch waiting"></span>
+            <strong>2 cliques</strong> — tenho, aguardando evento para evoluir
+        </span>
+
+        <span class="legend-item legend-hint">
+            No teclado: Enter alterna “tenho”, Shift+Enter alterna “aguardando”.
+        </span>
+
+    </div>
+
     <div class="filter-panel-wrap" id="filterPanelWrap">
 
         <div class="filter-panel-inner">
@@ -132,111 +172,30 @@
                         </p>
                     </div>
 
-                    <button
-                        class="clear-filters"
-                        id="clearFiltersBtn"
-                        type="button"
-                    >
+                    <button class="clear-filters" id="clearFiltersBtn" type="button">
                         Limpar filtros
                     </button>
 
                 </div>
 
                 <div class="filter-section">
+                    <div class="filter-section-title">Status</div>
+                    <div class="filter-options" id="statusFilterOptions"></div>
+                </div>
 
-                    <div class="filter-section-title">
-                        Status
-                    </div>
+                <div class="filter-section hidden" id="regionFilterSection">
+                    <div class="filter-section-title" id="regionFilterTitle">Região</div>
+                    <div class="filter-options" id="regionFilterOptions"></div>
+                </div>
 
-                    <div class="filter-options">
-
-                        <label class="filter-chip status-chip active">
-                            <input
-                                type="radio"
-                                name="statusFilter"
-                                value="all"
-                                checked
-                            >
-                            Todas
-                        </label>
-
-                        <label class="filter-chip status-chip">
-                            <input
-                                type="radio"
-                                name="statusFilter"
-                                value="owned"
-                            >
-                            Tenho
-                        </label>
-
-                        <label class="filter-chip status-chip">
-                            <input
-                                type="radio"
-                                name="statusFilter"
-                                value="missing"
-                            >
-                            Faltam
-                        </label>
-
-                    </div>
-
+                <div class="filter-section" id="categoryFilterSection">
+                    <div class="filter-section-title" id="categoryFilterTitle">Categoria</div>
+                    <div class="filter-options" id="categoryFilterOptions"></div>
                 </div>
 
                 <div class="filter-section">
-
-                    <div class="filter-section-title">
-                        Categoria
-                    </div>
-
-                    <div class="filter-options">
-
-                        <label class="filter-chip category-chip">
-                            <input
-                                type="checkbox"
-                                value="normal"
-                            >
-                            Normal
-                        </label>
-
-                        <label class="filter-chip category-chip">
-                            <input
-                                type="checkbox"
-                                value="pseudo"
-                            >
-                            Pseudo-lendário
-                        </label>
-
-                        <label class="filter-chip category-chip">
-                            <input
-                                type="checkbox"
-                                value="legendary"
-                            >
-                            Lendário
-                        </label>
-
-                        <label class="filter-chip category-chip">
-                            <input
-                                type="checkbox"
-                                value="mythical"
-                            >
-                            Mítico
-                        </label>
-
-                    </div>
-
-                </div>
-
-                <div class="filter-section">
-
-                    <div class="filter-section-title">
-                        Tipagem da Mega Evolução
-                    </div>
-
-                    <div
-                        class="filter-options"
-                        id="typeFilterOptions"
-                    ></div>
-
+                    <div class="filter-section-title">Tipagem</div>
+                    <div class="filter-options" id="typeFilterOptions"></div>
                 </div>
 
                 <div class="active-summary" id="activeSummary">
@@ -252,10 +211,13 @@
     <div class="grid" id="grid"></div>
 
     <footer>
-        Lista de Mega Evoluções e Reversões Primais disponíveis (e anunciadas) em Pokémon GO.
+        <span id="footerNote">
+            Lista de Mega Evoluções e Reversões Primais disponíveis (e anunciadas) em Pokémon GO.
+        </span>
         <br>
         Dados e imagens de referência:
         <a
+            id="footerSource"
             href="https://www.dittobase.com/pokemon-go/best-attackers/mega"
             target="_blank"
             rel="noopener"

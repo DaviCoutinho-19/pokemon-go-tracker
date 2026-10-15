@@ -2,6 +2,18 @@
 
 As datas registram a publicação de cada atualização.
 
+## Etapa 3 — Novas coleções — 15/10/2026
+
+- Navegação por abas entre Mega Dex, Safari Urbano e Shundos Iniciais.
+- Safari Urbano apresentado como tracker de coleção do evento de 26 e 27 de setembro em Rio de Janeiro, Lisboa, Brisbane, Marseille e Munique.
+- Marcações e progresso independentes por coleção.
+- Estado Aguardando evento nos Shundos Iniciais, com marcação por duplo clique.
+- Filtros por região e estágio nos Shundos Iniciais.
+- Imagens shiny para a coleção de Shundos Iniciais.
+- Backup JSON das três abas, preservando a importação de backups anteriores da Mega Dex.
+- Exportação PNG/SVG da aba atual e limpeza de progresso por coleção.
+- HTML, CSS e JavaScript mantidos separados.
+
 ## Etapa 2 — Filtros e exportação — 13/10/2026
 
 - Painel de filtros por status, categoria e tipo de Pokémon.

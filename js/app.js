@@ -1,6 +1,10 @@
 
 
-const POKEMON = [
+/* ======================================================
+   DADOS — Aba 1: Mega Evoluções
+   ====================================================== */
+
+const MEGA_LIST = [
 
     { name: "Mega Venusaur", dex: 3, slug: "venusaur-mega", types: ["Grass", "Poison"], category: "normal" },
     { name: "Mega Charizard Y", dex: 6, slug: "charizard-mega-y", types: ["Fire", "Flying"], category: "normal" },
@@ -67,7 +71,295 @@ const POKEMON = [
 
 ];
 
-const STORAGE_KEY = "megaDexProgress_v1";
+/* ======================================================
+   DADOS — Aba 2: Safari Urbano (City Safari)
+   Somente os 29 Pokémon considerados.
+   Eeveelutions e Pokémon de ovos foram desconsiderados.
+   ====================================================== */
+
+const SAFARI_LIST = [
+
+    /*
+     * O slug do traje segue a data de estreia na dittobase
+     * ("may-2023"), e não um nome descritivo como "explorer-hat".
+     */
+    { name: "Eevee (Chapéu de Explorador)", dex: 133, slug: "eevee-may-2023", types: ["Normal"], category: "research" },
+
+    { name: "Jigglypuff", dex: 39, slug: "jigglypuff", types: ["Normal", "Fairy"], category: "wild" },
+    { name: "Abra", dex: 63, slug: "abra", types: ["Psychic"], category: "wild" },
+    { name: "Slowpoke", dex: 79, slug: "slowpoke", types: ["Water", "Psychic"], category: "wild" },
+    { name: "Totodile", dex: 158, slug: "totodile", types: ["Water"], category: "wild" },
+    { name: "Mareep", dex: 179, slug: "mareep", types: ["Electric"], category: "wild" },
+    { name: "Marill", dex: 183, slug: "marill", types: ["Water", "Fairy"], category: "wild" },
+    { name: "Hoppip", dex: 187, slug: "hoppip", types: ["Grass", "Flying"], category: "wild" },
+
+    { name: "Unown B", dex: 201, slug: "unown-b", types: ["Psychic"], category: "unown" },
+    { name: "Unown L", dex: 201, slug: "unown-l", types: ["Psychic"], category: "unown" },
+    { name: "Unown M", dex: 201, slug: "unown-m", types: ["Psychic"], category: "unown" },
+    { name: "Unown R", dex: 201, slug: "unown-r", types: ["Psychic"], category: "unown" },
+
+    { name: "Stantler", dex: 234, slug: "stantler", types: ["Normal"], category: "wild" },
+    { name: "Miltank", dex: 241, slug: "miltank", types: ["Normal"], category: "wild" },
+    { name: "Wingull", dex: 278, slug: "wingull", types: ["Water", "Flying"], category: "wild" },
+    { name: "Baltoy", dex: 343, slug: "baltoy", types: ["Ground", "Psychic"], category: "wild" },
+    { name: "Buizel", dex: 418, slug: "buizel", types: ["Water"], category: "wild" },
+    { name: "Lillipup", dex: 506, slug: "lillipup", types: ["Normal"], category: "wild" },
+    { name: "Petilil", dex: 548, slug: "petilil", types: ["Grass"], category: "wild" },
+    { name: "Yamask", dex: 562, slug: "yamask", types: ["Ghost"], category: "wild" },
+    { name: "Gothita", dex: 574, slug: "gothita", types: ["Psychic"], category: "wild" },
+    { name: "Flabébé (Laranja)", dex: 669, slug: "flabebe-orange", types: ["Fairy"], category: "wild" },
+    { name: "Binacle", dex: 688, slug: "binacle", types: ["Rock", "Water"], category: "wild" },
+    { name: "Clauncher", dex: 692, slug: "clauncher", types: ["Water"], category: "wild" },
+    { name: "Hawlucha", dex: 701, slug: "hawlucha", types: ["Fighting", "Flying"], category: "wild" },
+    { name: "Mudbray", dex: 749, slug: "mudbray", types: ["Ground"], category: "wild" },
+    { name: "Oranguru", dex: 765, slug: "oranguru", types: ["Normal", "Psychic"], category: "wild" },
+    { name: "Komala", dex: 775, slug: "komala", types: ["Normal"], category: "wild" },
+    { name: "Flamigo", dex: 973, slug: "flamigo", types: ["Flying", "Fighting"], category: "wild" }
+
+];
+
+/* ======================================================
+   DADOS — Aba 3: Shundos dos Iniciais
+   Shundo = Shiny + IV 100%.
+   Todas as 9 regiões com iniciais lançados em Pokémon GO,
+   nas 3 formas de cada linha, em ordem de Pokédex.
+   Hisui fica de fora: são regionais de outras regiões.
+   ====================================================== */
+
+const STARTERS_LIST = [
+
+    /* --- Kanto --- */
+    { name: "Bulbasaur", dex: 1, slug: "bulbasaur", types: ["Grass", "Poison"], category: "stage1", region: "kanto" },
+    { name: "Ivysaur", dex: 2, slug: "ivysaur", types: ["Grass", "Poison"], category: "stage2", region: "kanto" },
+    { name: "Venusaur", dex: 3, slug: "venusaur", types: ["Grass", "Poison"], category: "stage3", region: "kanto" },
+    { name: "Charmander", dex: 4, slug: "charmander", types: ["Fire"], category: "stage1", region: "kanto" },
+    { name: "Charmeleon", dex: 5, slug: "charmeleon", types: ["Fire"], category: "stage2", region: "kanto" },
+    { name: "Charizard", dex: 6, slug: "charizard", types: ["Fire", "Flying"], category: "stage3", region: "kanto" },
+    { name: "Squirtle", dex: 7, slug: "squirtle", types: ["Water"], category: "stage1", region: "kanto" },
+    { name: "Wartortle", dex: 8, slug: "wartortle", types: ["Water"], category: "stage2", region: "kanto" },
+    { name: "Blastoise", dex: 9, slug: "blastoise", types: ["Water"], category: "stage3", region: "kanto" },
+
+    /* --- Johto --- */
+    { name: "Chikorita", dex: 152, slug: "chikorita", types: ["Grass"], category: "stage1", region: "johto" },
+    { name: "Bayleef", dex: 153, slug: "bayleef", types: ["Grass"], category: "stage2", region: "johto" },
+    { name: "Meganium", dex: 154, slug: "meganium", types: ["Grass"], category: "stage3", region: "johto" },
+    { name: "Cyndaquil", dex: 155, slug: "cyndaquil", types: ["Fire"], category: "stage1", region: "johto" },
+    { name: "Quilava", dex: 156, slug: "quilava", types: ["Fire"], category: "stage2", region: "johto" },
+    { name: "Typhlosion", dex: 157, slug: "typhlosion", types: ["Fire"], category: "stage3", region: "johto" },
+    { name: "Totodile", dex: 158, slug: "totodile", types: ["Water"], category: "stage1", region: "johto" },
+    { name: "Croconaw", dex: 159, slug: "croconaw", types: ["Water"], category: "stage2", region: "johto" },
+    { name: "Feraligatr", dex: 160, slug: "feraligatr", types: ["Water"], category: "stage3", region: "johto" },
+
+    /* --- Hoenn --- */
+    { name: "Treecko", dex: 252, slug: "treecko", types: ["Grass"], category: "stage1", region: "hoenn" },
+    { name: "Grovyle", dex: 253, slug: "grovyle", types: ["Grass"], category: "stage2", region: "hoenn" },
+    { name: "Sceptile", dex: 254, slug: "sceptile", types: ["Grass"], category: "stage3", region: "hoenn" },
+    { name: "Torchic", dex: 255, slug: "torchic", types: ["Fire"], category: "stage1", region: "hoenn" },
+    { name: "Combusken", dex: 256, slug: "combusken", types: ["Fire", "Fighting"], category: "stage2", region: "hoenn" },
+    { name: "Blaziken", dex: 257, slug: "blaziken", types: ["Fire", "Fighting"], category: "stage3", region: "hoenn" },
+    { name: "Mudkip", dex: 258, slug: "mudkip", types: ["Water"], category: "stage1", region: "hoenn" },
+    { name: "Marshtomp", dex: 259, slug: "marshtomp", types: ["Water", "Ground"], category: "stage2", region: "hoenn" },
+    { name: "Swampert", dex: 260, slug: "swampert", types: ["Water", "Ground"], category: "stage3", region: "hoenn" },
+
+    /* --- Sinnoh --- */
+    { name: "Turtwig", dex: 387, slug: "turtwig", types: ["Grass"], category: "stage1", region: "sinnoh" },
+    { name: "Grotle", dex: 388, slug: "grotle", types: ["Grass"], category: "stage2", region: "sinnoh" },
+    { name: "Torterra", dex: 389, slug: "torterra", types: ["Grass", "Ground"], category: "stage3", region: "sinnoh" },
+    { name: "Chimchar", dex: 390, slug: "chimchar", types: ["Fire"], category: "stage1", region: "sinnoh" },
+    { name: "Monferno", dex: 391, slug: "monferno", types: ["Fire", "Fighting"], category: "stage2", region: "sinnoh" },
+    { name: "Infernape", dex: 392, slug: "infernape", types: ["Fire", "Fighting"], category: "stage3", region: "sinnoh" },
+    { name: "Piplup", dex: 393, slug: "piplup", types: ["Water"], category: "stage1", region: "sinnoh" },
+    { name: "Prinplup", dex: 394, slug: "prinplup", types: ["Water"], category: "stage2", region: "sinnoh" },
+    { name: "Empoleon", dex: 395, slug: "empoleon", types: ["Water", "Steel"], category: "stage3", region: "sinnoh" },
+
+    /* --- Unova --- */
+    { name: "Snivy", dex: 495, slug: "snivy", types: ["Grass"], category: "stage1", region: "unova" },
+    { name: "Servine", dex: 496, slug: "servine", types: ["Grass"], category: "stage2", region: "unova" },
+    { name: "Serperior", dex: 497, slug: "serperior", types: ["Grass"], category: "stage3", region: "unova" },
+    { name: "Tepig", dex: 498, slug: "tepig", types: ["Fire"], category: "stage1", region: "unova" },
+    { name: "Pignite", dex: 499, slug: "pignite", types: ["Fire", "Fighting"], category: "stage2", region: "unova" },
+    { name: "Emboar", dex: 500, slug: "emboar", types: ["Fire", "Fighting"], category: "stage3", region: "unova" },
+    { name: "Oshawott", dex: 501, slug: "oshawott", types: ["Water"], category: "stage1", region: "unova" },
+    { name: "Dewott", dex: 502, slug: "dewott", types: ["Water"], category: "stage2", region: "unova" },
+    { name: "Samurott", dex: 503, slug: "samurott", types: ["Water"], category: "stage3", region: "unova" },
+
+    /* --- Kalos --- */
+    { name: "Chespin", dex: 650, slug: "chespin", types: ["Grass"], category: "stage1", region: "kalos" },
+    { name: "Quilladin", dex: 651, slug: "quilladin", types: ["Grass"], category: "stage2", region: "kalos" },
+    { name: "Chesnaught", dex: 652, slug: "chesnaught", types: ["Grass", "Fighting"], category: "stage3", region: "kalos" },
+    { name: "Fennekin", dex: 653, slug: "fennekin", types: ["Fire"], category: "stage1", region: "kalos" },
+    { name: "Braixen", dex: 654, slug: "braixen", types: ["Fire"], category: "stage2", region: "kalos" },
+    { name: "Delphox", dex: 655, slug: "delphox", types: ["Fire", "Psychic"], category: "stage3", region: "kalos" },
+    { name: "Froakie", dex: 656, slug: "froakie", types: ["Water"], category: "stage1", region: "kalos" },
+    { name: "Frogadier", dex: 657, slug: "frogadier", types: ["Water"], category: "stage2", region: "kalos" },
+    { name: "Greninja", dex: 658, slug: "greninja", types: ["Water", "Dark"], category: "stage3", region: "kalos" },
+
+    /* --- Alola --- */
+    { name: "Rowlet", dex: 722, slug: "rowlet", types: ["Grass", "Flying"], category: "stage1", region: "alola" },
+    { name: "Dartrix", dex: 723, slug: "dartrix", types: ["Grass", "Flying"], category: "stage2", region: "alola" },
+    { name: "Decidueye", dex: 724, slug: "decidueye", types: ["Grass", "Ghost"], category: "stage3", region: "alola" },
+    { name: "Litten", dex: 725, slug: "litten", types: ["Fire"], category: "stage1", region: "alola" },
+    { name: "Torracat", dex: 726, slug: "torracat", types: ["Fire"], category: "stage2", region: "alola" },
+    { name: "Incineroar", dex: 727, slug: "incineroar", types: ["Fire", "Dark"], category: "stage3", region: "alola" },
+    { name: "Popplio", dex: 728, slug: "popplio", types: ["Water"], category: "stage1", region: "alola" },
+    { name: "Brionne", dex: 729, slug: "brionne", types: ["Water"], category: "stage2", region: "alola" },
+    { name: "Primarina", dex: 730, slug: "primarina", types: ["Water", "Fairy"], category: "stage3", region: "alola" },
+
+    /* --- Galar --- */
+    { name: "Grookey", dex: 810, slug: "grookey", types: ["Grass"], category: "stage1", region: "galar" },
+    { name: "Thwackey", dex: 811, slug: "thwackey", types: ["Grass"], category: "stage2", region: "galar" },
+    { name: "Rillaboom", dex: 812, slug: "rillaboom", types: ["Grass"], category: "stage3", region: "galar" },
+    { name: "Scorbunny", dex: 813, slug: "scorbunny", types: ["Fire"], category: "stage1", region: "galar" },
+    { name: "Raboot", dex: 814, slug: "raboot", types: ["Fire"], category: "stage2", region: "galar" },
+    { name: "Cinderace", dex: 815, slug: "cinderace", types: ["Fire"], category: "stage3", region: "galar" },
+    { name: "Sobble", dex: 816, slug: "sobble", types: ["Water"], category: "stage1", region: "galar" },
+    { name: "Drizzile", dex: 817, slug: "drizzile", types: ["Water"], category: "stage2", region: "galar" },
+    { name: "Inteleon", dex: 818, slug: "inteleon", types: ["Water"], category: "stage3", region: "galar" },
+
+    /* --- Paldea --- */
+    { name: "Sprigatito", dex: 906, slug: "sprigatito", types: ["Grass"], category: "stage1", region: "paldea" },
+    { name: "Floragato", dex: 907, slug: "floragato", types: ["Grass"], category: "stage2", region: "paldea" },
+    { name: "Meowscarada", dex: 908, slug: "meowscarada", types: ["Grass", "Dark"], category: "stage3", region: "paldea" },
+    { name: "Fuecoco", dex: 909, slug: "fuecoco", types: ["Fire"], category: "stage1", region: "paldea" },
+    { name: "Crocalor", dex: 910, slug: "crocalor", types: ["Fire"], category: "stage2", region: "paldea" },
+    { name: "Skeledirge", dex: 911, slug: "skeledirge", types: ["Fire", "Ghost"], category: "stage3", region: "paldea" },
+    { name: "Quaxly", dex: 912, slug: "quaxly", types: ["Water"], category: "stage1", region: "paldea" },
+    { name: "Quaxwell", dex: 913, slug: "quaxwell", types: ["Water"], category: "stage2", region: "paldea" },
+    { name: "Quaquaval", dex: 914, slug: "quaquaval", types: ["Water", "Fighting"], category: "stage3", region: "paldea" }
+
+];
+
+/* ======================================================
+   Configuração das abas
+   ====================================================== */
+
+const TABS = {
+
+    mega: {
+        id: "mega",
+        list: MEGA_LIST,
+        storageKey: "megaDexProgress_v1",
+        pageTitle: "Mega Dex",
+        pageSubtitle:
+            "Marque cada Mega Evolução que você já possui em Pokémon GO. " +
+            "Seu progresso fica salvo neste navegador.",
+        exportTitle: "Mega Dex",
+        exportSubtitle: "Meu progresso de Mega Evoluções",
+        exportFilePrefix: "mega-dex",
+        unitLabel: "capturadas",
+        searchPlaceholder: "Buscar por nome ou número...",
+        hasWaitingState: false,
+        useShinyImages: false,
+        categoryTitle: "Categoria",
+        categoryLabels: {
+            normal: "Normal",
+            pseudo: "Pseudo-lendário",
+            legendary: "Lendário",
+            mythical: "Mítico"
+        },
+        statusLabels: {
+            all: "Todas",
+            owned: "Tenho",
+            missing: "Faltam"
+        },
+        emptyMessage: "Nenhuma Mega Evolução encontrada com esses filtros.",
+        allLabel: "Todos os Pokémon",
+        footerNote:
+            "Lista de Mega Evoluções e Reversões Primais disponíveis (e anunciadas) em Pokémon GO.",
+        footerSource: "https://www.dittobase.com/pokemon-go/best-attackers/mega"
+    },
+
+    safari: {
+        id: "safari",
+        list: SAFARI_LIST,
+        storageKey: "citySafariMunich2026_v1",
+        pageTitle: "Safari Urbano",
+        pageSubtitle:
+            "Tracker de coleção do evento Safari Urbano, realizado nos dias 26 e 27 de setembro " +
+            "em Rio de Janeiro, Lisboa, Brisbane, Marseille e Munique. " +
+            "Marque cada Pokémon que você já capturou durante o evento.",
+        exportTitle: "Safari Urbano",
+        exportSubtitle: "Safari Urbano · 26 e 27 de setembro · Rio de Janeiro, Lisboa, Brisbane, Marseille e Munique",
+        exportFilePrefix: "safari-urbano",
+        unitLabel: "capturados",
+        searchPlaceholder: "Buscar Pokémon do evento...",
+        hasWaitingState: false,
+        useShinyImages: false,
+        categoryTitle: "Como aparece",
+        categoryLabels: {
+            wild: "Selvagem",
+            research: "Pesquisa Especial",
+            unown: "Unown"
+        },
+        statusLabels: {
+            all: "Todos",
+            owned: "Capturei",
+            missing: "Faltam"
+        },
+        emptyMessage: "Nenhum Pokémon do evento encontrado com esses filtros.",
+        allLabel: "Todos do evento",
+        footerNote:
+            "Pokémon selvagens e de Pesquisa Especial do evento Safari Urbano. " +
+            "Eeveelutions e Pokémon de ovos não entram nesta contagem.",
+        footerSource:
+            "https://www.dittobase.com/pokemon-go/pokedex"
+    },
+
+    starters: {
+        id: "starters",
+        list: STARTERS_LIST,
+        storageKey: "shundoStarters_v1",
+        pageTitle: "Shundos Iniciais",
+        pageSubtitle:
+            "Coleção de Shundos (Shiny + IV 100%) dos iniciais de todas as regiões, " +
+            "nas 3 formas. Um clique marca o que você já tem; dois cliques marcam " +
+            "em amarelo o que você tem mas está guardando para evoluir num evento.",
+        exportTitle: "Shundos Iniciais",
+        exportSubtitle: "Shiny + IV 100% · Iniciais de todas as regiões",
+        exportFilePrefix: "shundos-iniciais",
+        unitLabel: "shundos",
+        searchPlaceholder: "Buscar inicial, região ou tipo...",
+        hasWaitingState: true,
+        useShinyImages: true,
+        categoryTitle: "Estágio",
+        categoryLabels: {
+            stage1: "1º estágio",
+            stage2: "2º estágio",
+            stage3: "3º estágio"
+        },
+        statusLabels: {
+            all: "Todos",
+            owned: "Tenho",
+            waiting: "Aguardando evento",
+            caught: "Tenho + aguardando",
+            missing: "Faltam"
+        },
+        statusOrder: ["all", "owned", "waiting", "caught", "missing"],
+        regionTitle: "Região",
+        regionLabels: {
+            kanto: "Kanto",
+            johto: "Johto",
+            hoenn: "Hoenn",
+            sinnoh: "Sinnoh",
+            unova: "Unova",
+            kalos: "Kalos",
+            alola: "Alola",
+            galar: "Galar",
+            paldea: "Paldea"
+        },
+        emptyMessage: "Nenhum inicial encontrado com esses filtros.",
+        allLabel: "Todos os iniciais",
+        footerNote:
+            "Iniciais de Kanto a Paldea nas 3 formas, com as artes shiny. " +
+            "Hisui fica de fora: suas linhas são variantes regionais de outras regiões.",
+        footerSource: "https://www.dittobase.com/pokemon-go/pokedex"
+    }
+
+};
+
+/* ======================================================
+   Constantes compartilhadas
+   ====================================================== */
 
 const TYPE_LABELS = {
     Normal: "Normal",
@@ -111,35 +403,100 @@ const TYPE_COLORS = {
     Fairy: "#d685ad"
 };
 
-const CATEGORY_LABELS = {
-    normal: "Normal",
-    pseudo: "Pseudo-lendário",
-    legendary: "Lendário",
-    mythical: "Mítico"
-};
+const TYPE_ORDER = [
+    "Normal", "Fire", "Water", "Electric", "Grass", "Ice",
+    "Fighting", "Poison", "Ground", "Flying", "Psychic", "Bug",
+    "Rock", "Ghost", "Dragon", "Dark", "Steel", "Fairy"
+];
 
-let owned = {};
-let currentSearch = "";
-let statusFilter = "all";
-let selectedCategories = new Set();
-let selectedTypes = new Set();
+/* Marcações possíveis de um Pokémon */
+const MARK_NONE = "none";
+const MARK_OWNED = "owned";
+const MARK_WAITING = "waiting";
 
-try {
-    owned = JSON.parse(localStorage.getItem(STORAGE_KEY)) || {};
-} catch (e) {
-    owned = {};
-}
+/* ======================================================
+   Estado
+   ====================================================== */
+
+let currentTabId = "mega";
+
+const state = {};
+
+Object.keys(TABS).forEach(tabId => {
+
+    const cfg = TABS[tabId];
+
+    let stored = {};
+
+    try {
+        stored = JSON.parse(localStorage.getItem(cfg.storageKey)) || {};
+    } catch (e) {
+        stored = {};
+    }
+
+    /*
+     * Normaliza para o formato de marcação em texto.
+     * Backups antigos guardavam "true", que equivale a "owned".
+     */
+    const marks = {};
+
+    Object.keys(stored).forEach(slug => {
+
+        const value = stored[slug];
+
+        if (value === true || value === MARK_OWNED) {
+            marks[slug] = MARK_OWNED;
+        } else if (value === MARK_WAITING) {
+            marks[slug] = MARK_WAITING;
+        }
+
+    });
+
+    state[tabId] = {
+        marks: marks,
+        search: "",
+        statusFilter: "all",
+        selectedCategories: new Set(),
+        selectedRegions: new Set(),
+        selectedTypes: new Set()
+    };
+
+});
+
+/* Cache de imagens: chave "tabId:slug" -> URL que funcionou. */
+const imageCache = {};
+
+/* ======================================================
+   Elementos
+   ====================================================== */
 
 const grid = document.getElementById("grid");
+const pageTitle = document.getElementById("pageTitle");
+const pageSubtitle = document.getElementById("pageSubtitle");
 const progressNum = document.getElementById("progressNum");
 const progressBar = document.getElementById("progressBar");
+const progressWaitBar = document.getElementById("progressWaitBar");
 const progressLabel = document.getElementById("progressLabel");
+
+const tabs = document.getElementById("tabs");
+const legend = document.getElementById("legend");
+
+const searchInput = document.getElementById("searchInput");
 
 const filterToggle = document.getElementById("filterToggle");
 const filterPanelWrap = document.getElementById("filterPanelWrap");
 const filterBadge = document.getElementById("filterBadge");
 const clearFiltersBtn = document.getElementById("clearFiltersBtn");
 const activeSummary = document.getElementById("activeSummary");
+
+const statusFilterOptions = document.getElementById("statusFilterOptions");
+const categoryFilterSection = document.getElementById("categoryFilterSection");
+const categoryFilterTitle = document.getElementById("categoryFilterTitle");
+const categoryFilterOptions = document.getElementById("categoryFilterOptions");
+const regionFilterSection = document.getElementById("regionFilterSection");
+const regionFilterTitle = document.getElementById("regionFilterTitle");
+const regionFilterOptions = document.getElementById("regionFilterOptions");
+const typeFilterOptions = document.getElementById("typeFilterOptions");
 
 const exportToggle = document.getElementById("exportToggle");
 const exportDropdown = document.getElementById("exportDropdown");
@@ -149,33 +506,71 @@ const exportJsonBtn = document.getElementById("exportJsonBtn");
 const importJsonBtn = document.getElementById("importJsonBtn");
 const importFile = document.getElementById("importFile");
 
+const footerNote = document.getElementById("footerNote");
+const footerSource = document.getElementById("footerSource");
+
 const toast = document.getElementById("toast");
 const exportStage = document.getElementById("exportStage");
 
-const TYPE_ORDER = [
-    "Normal",
-    "Fire",
-    "Water",
-    "Electric",
-    "Grass",
-    "Ice",
-    "Fighting",
-    "Poison",
-    "Ground",
-    "Flying",
-    "Psychic",
-    "Bug",
-    "Rock",
-    "Ghost",
-    "Dragon",
-    "Dark",
-    "Steel",
-    "Fairy"
-];
+/* ======================================================
+   Helpers
+   ====================================================== */
+
+function config() {
+    return TABS[currentTabId];
+}
+
+function st() {
+    return state[currentTabId];
+}
+
+function list() {
+    return config().list;
+}
+
+/* A chave precisa do estágio: Totodile aparece em duas abas. */
+function keyOf(p) {
+    return p.slug;
+}
+
+function markOf(p, tabId) {
+
+    const target = tabId || currentTabId;
+    const value = state[target].marks[keyOf(p)];
+
+    if (value === MARK_OWNED) {
+        return MARK_OWNED;
+    }
+
+    if (value === MARK_WAITING) {
+        return MARK_WAITING;
+    }
+
+    return MARK_NONE;
+}
+
+/* "Tenho de alguma forma" = verde ou amarelo. */
+function isCaught(p, tabId) {
+    return markOf(p, tabId) !== MARK_NONE;
+}
+
+function setMark(p, mark) {
+
+    if (mark === MARK_NONE) {
+        delete st().marks[keyOf(p)];
+    } else {
+        st().marks[keyOf(p)] = mark;
+    }
+
+    persist();
+}
 
 function persist() {
     try {
-        localStorage.setItem(STORAGE_KEY, JSON.stringify(owned));
+        localStorage.setItem(
+            config().storageKey,
+            JSON.stringify(st().marks)
+        );
     } catch (e) {
         showToast("Não foi possível salvar o progresso neste navegador.");
     }
@@ -192,140 +587,258 @@ function showToast(message) {
     }, 3200);
 }
 
-function updateProgress() {
-
-    const total = POKEMON.length;
-
-    const count = POKEMON.filter(
-        p => owned[p.slug]
-    ).length;
-
-    const pct = Math.round(
-        (count / total) * 100
-    );
-
-    progressNum.innerHTML =
-        count +
-        '<span class="total">/ ' +
-        total +
-        ' capturadas</span>';
-
-    progressBar.style.width =
-        pct + "%";
-
-    progressLabel.textContent =
-        pct + "% completo";
+function statusOrder() {
+    return config().statusOrder || ["all", "owned", "missing"];
 }
 
-function getImageUrls(p) {
+/* ======================================================
+   Imagens
+   ====================================================== */
 
-    const normal =
-        "https://assets.dittobase.com/go/pokemon/" +
-        p.dex +
-        "-" +
-        p.slug +
-        ".png";
+/*
+ * Devolve a lista de URLs candidatas, em ordem de preferência.
+ * Nas abas shiny tentamos primeiro a arte shiny e caímos para a
+ * normal caso ela não exista no CDN.
+ */
+function imageCandidates(p) {
 
-    const placeholder =
-        "https://assets.dittobase.com/go/pokemon-placeholder/" +
-        p.dex +
-        "-" +
-        p.slug +
-        ".png";
+    const base = "https://assets.dittobase.com/go/";
+    const id = p.dex + "-" + p.slug;
 
-    return {
-        normal,
-        placeholder
-    };
+    const urls = [];
+
+    if (config().useShinyImages) {
+        urls.push(base + "pokemon/" + id + "-shiny.png");
+    }
+
+    urls.push(base + "pokemon/" + id + ".png");
+    urls.push(base + "pokemon-placeholder/" + id + ".png");
+
+    return urls;
+}
+
+/*
+ * A dittobase serve as imagens SEM o cabeçalho CORS, o que impede o
+ * html2canvas de desenhá-las. Este proxy devolve a mesma imagem com
+ * CORS liberado e é usado apenas nas exportações.
+ */
+function proxied(url) {
+
+    const clean = url.replace(/^https?:\/\//, "");
+
+    return "https://images.weserv.nl/?url=" + encodeURIComponent(clean);
 }
 
 function attachImageFallback(img, p) {
 
-    const urls = getImageUrls(p);
+    const urls = imageCandidates(p);
+    const cacheKey = currentTabId + ":" + p.slug;
 
-    img.src = urls.normal;
+    /* Já sabemos qual URL funciona: usa direto, sem piscar. */
+    if (imageCache[cacheKey]) {
+        img.src = imageCache[cacheKey];
+        return;
+    }
+
+    let index = 0;
+
+    img.addEventListener("load", function () {
+        imageCache[cacheKey] = this.src;
+    });
 
     img.addEventListener("error", function () {
 
-        if (this.dataset.fallback !== "true") {
+        index += 1;
 
-            this.dataset.fallback = "true";
-            this.src = urls.placeholder;
-
+        if (index < urls.length) {
+            this.src = urls[index];
         } else {
-
-            this.dataset.failed = "true";
             this.style.opacity = "0.12";
-
         }
 
     });
+
+    img.src = urls[0];
 }
+
+function loadImageAsDataURL(url) {
+
+    return new Promise(resolve => {
+
+        const img = new Image();
+
+        img.crossOrigin = "anonymous";
+
+        img.onload = function () {
+
+            try {
+
+                const canvas = document.createElement("canvas");
+
+                canvas.width = img.naturalWidth || 160;
+                canvas.height = img.naturalHeight || 160;
+
+                canvas.getContext("2d").drawImage(img, 0, 0);
+
+                resolve(canvas.toDataURL("image/png"));
+
+            } catch (e) {
+                resolve(null);
+            }
+
+        };
+
+        img.onerror = function () {
+            resolve(null);
+        };
+
+        img.src = proxied(url);
+
+    });
+
+}
+
+/* Percorre as URLs candidatas até uma virar data URL. */
+async function resolvePokemonDataURL(p) {
+
+    const urls = imageCandidates(p);
+
+    for (const url of urls) {
+
+        const data = await loadImageAsDataURL(url);
+
+        if (data) {
+            return data;
+        }
+
+    }
+
+    return null;
+}
+
+/* ======================================================
+   Progresso
+   ====================================================== */
+
+function updateProgress() {
+
+    const total = list().length;
+
+    const ownedCount = list().filter(
+        p => markOf(p) === MARK_OWNED
+    ).length;
+
+    const waitingCount = list().filter(
+        p => markOf(p) === MARK_WAITING
+    ).length;
+
+    const caught = ownedCount + waitingCount;
+
+    const pct = total > 0 ? Math.round((caught / total) * 100) : 0;
+
+    progressNum.innerHTML =
+        caught +
+        '<span class="total">/ ' + total + ' ' + config().unitLabel + '</span>';
+
+    progressBar.style.width =
+        (total > 0 ? (ownedCount / total) * 100 : 0) + "%";
+
+    progressWaitBar.style.width =
+        (total > 0 ? (waitingCount / total) * 100 : 0) + "%";
+
+    if (config().hasWaitingState && waitingCount > 0) {
+        progressLabel.textContent =
+            pct + "% completo · " + waitingCount + " aguardando evento";
+    } else {
+        progressLabel.textContent = pct + "% completo";
+    }
+
+    updateTabCounts();
+}
+
+function updateTabCounts() {
+
+    document.querySelectorAll("[data-count]").forEach(el => {
+
+        const tabId = el.dataset.count;
+        const cfg = TABS[tabId];
+
+        const caught = cfg.list.filter(p => isCaught(p, tabId)).length;
+
+        el.textContent = caught + "/" + cfg.list.length;
+
+    });
+
+}
+
+/* ======================================================
+   Filtros
+   ====================================================== */
 
 function matchesFilters(p) {
 
-    const isOwned =
-        !!owned[p.slug];
+    const s = st();
+    const mark = markOf(p);
+
+    if (s.statusFilter === "owned" && mark !== MARK_OWNED) {
+        return false;
+    }
+
+    if (s.statusFilter === "waiting" && mark !== MARK_WAITING) {
+        return false;
+    }
+
+    if (s.statusFilter === "caught" && mark === MARK_NONE) {
+        return false;
+    }
+
+    if (s.statusFilter === "missing" && mark !== MARK_NONE) {
+        return false;
+    }
 
     if (
-        statusFilter === "owned" &&
-        !isOwned
+        s.selectedCategories.size > 0 &&
+        !s.selectedCategories.has(p.category)
     ) {
         return false;
     }
 
     if (
-        statusFilter === "missing" &&
-        isOwned
+        s.selectedRegions.size > 0 &&
+        !s.selectedRegions.has(p.region)
     ) {
         return false;
     }
 
     if (
-        selectedCategories.size > 0 &&
-        !selectedCategories.has(p.category)
+        s.selectedTypes.size > 0 &&
+        !p.types.some(type => s.selectedTypes.has(type))
     ) {
         return false;
     }
 
-    if (
-        selectedTypes.size > 0 &&
-        !p.types.some(type =>
-            selectedTypes.has(type)
-        )
-    ) {
-        return false;
-    }
+    if (s.search) {
 
-    if (currentSearch) {
+        const q = s.search.toLowerCase();
 
-        const q =
-            currentSearch.toLowerCase();
+        const inName = p.name.toLowerCase().includes(q);
+        const inDex = String(p.dex).includes(q);
 
-        const inName =
-            p.name.toLowerCase().includes(q);
+        const inTypes = p.types.some(
+            type => TYPE_LABELS[type].toLowerCase().includes(q)
+        );
 
-        const inDex =
-            String(p.dex).includes(q);
+        const categoryLabel = config().categoryLabels[p.category] || "";
+        const inCategory = categoryLabel.toLowerCase().includes(q);
 
-        const inTypes =
-            p.types.some(type =>
-                TYPE_LABELS[type]
-                    .toLowerCase()
-                    .includes(q)
-            );
+        const regionLabel =
+            p.region && config().regionLabels
+                ? config().regionLabels[p.region] || ""
+                : "";
 
-        const inCategory =
-            CATEGORY_LABELS[p.category]
-                .toLowerCase()
-                .includes(q);
+        const inRegion = regionLabel.toLowerCase().includes(q);
 
-        if (
-            !inName &&
-            !inDex &&
-            !inTypes &&
-            !inCategory
-        ) {
+        if (!inName && !inDex && !inTypes && !inCategory && !inRegion) {
             return false;
         }
     }
@@ -333,182 +846,317 @@ function matchesFilters(p) {
     return true;
 }
 
-function renderTypeFilters() {
+function buildChip(className, labelText, checked, type, onChange, colorVar) {
 
-    const container =
-        document.getElementById("typeFilterOptions");
+    const label = document.createElement("label");
 
-    container.innerHTML = "";
+    label.className = "filter-chip " + className + (checked ? " active" : "");
 
-    TYPE_ORDER.forEach(type => {
+    if (colorVar) {
+        label.style.setProperty("--type-color", colorVar);
+    }
 
-        const label =
-            document.createElement("label");
+    const input = document.createElement("input");
 
-        label.className =
-            "filter-chip type-chip";
+    input.type = type;
+    input.checked = checked;
 
-        label.style.setProperty(
-            "--type-color",
-            TYPE_COLORS[type]
-        );
+    if (type === "radio") {
+        input.name = "statusFilter";
+    }
 
-        const input =
-            document.createElement("input");
+    label.appendChild(input);
 
-        input.type = "checkbox";
-        input.value = type;
-
-        const dot =
-            document.createElement("span");
-
-        dot.className =
-            "type-dot";
-
-        const text =
-            document.createElement("span");
-
-        text.textContent =
-            TYPE_LABELS[type];
-
-        label.appendChild(input);
+    if (colorVar) {
+        const dot = document.createElement("span");
+        dot.className = "type-dot";
         label.appendChild(dot);
-        label.appendChild(text);
+    }
 
-        input.addEventListener(
-            "change",
+    const text = document.createElement("span");
+    text.textContent = labelText;
+    label.appendChild(text);
+
+    input.addEventListener("change", () => onChange(input));
+
+    return label;
+}
+
+function renderStatusFilters() {
+
+    const labels = config().statusLabels;
+
+    statusFilterOptions.innerHTML = "";
+
+    statusOrder().forEach(value => {
+
+        const chip = buildChip(
+            "status-chip",
+            labels[value],
+            st().statusFilter === value,
+            "radio",
             () => {
-
-                if (input.checked) {
-                    selectedTypes.add(type);
-                } else {
-                    selectedTypes.delete(type);
-                }
-
+                st().statusFilter = value;
                 updateFilterChips();
                 render();
-
             }
         );
 
-        container.appendChild(label);
+        statusFilterOptions.appendChild(chip);
 
     });
+
+}
+
+function renderCategoryFilters() {
+
+    const labels = config().categoryLabels;
+
+    categoryFilterTitle.textContent = config().categoryTitle;
+    categoryFilterOptions.innerHTML = "";
+
+    const present = new Set();
+    list().forEach(p => present.add(p.category));
+
+    Object.keys(labels)
+        .filter(key => present.has(key))
+        .forEach(key => {
+
+            const chip = buildChip(
+                "category-chip",
+                labels[key],
+                st().selectedCategories.has(key),
+                "checkbox",
+                input => {
+
+                    if (input.checked) {
+                        st().selectedCategories.add(key);
+                    } else {
+                        st().selectedCategories.delete(key);
+                    }
+
+                    updateFilterChips();
+                    render();
+                }
+            );
+
+            categoryFilterOptions.appendChild(chip);
+
+        });
+
+}
+
+function renderRegionFilters() {
+
+    const labels = config().regionLabels;
+
+    if (!labels) {
+        regionFilterSection.classList.add("hidden");
+        regionFilterOptions.innerHTML = "";
+        return;
+    }
+
+    regionFilterSection.classList.remove("hidden");
+    regionFilterTitle.textContent = config().regionTitle || "Região";
+    regionFilterOptions.innerHTML = "";
+
+    const present = new Set();
+    list().forEach(p => present.add(p.region));
+
+    Object.keys(labels)
+        .filter(key => present.has(key))
+        .forEach(key => {
+
+            const chip = buildChip(
+                "region-chip",
+                labels[key],
+                st().selectedRegions.has(key),
+                "checkbox",
+                input => {
+
+                    if (input.checked) {
+                        st().selectedRegions.add(key);
+                    } else {
+                        st().selectedRegions.delete(key);
+                    }
+
+                    updateFilterChips();
+                    render();
+                }
+            );
+
+            regionFilterOptions.appendChild(chip);
+
+        });
+
+}
+
+function renderTypeFilters() {
+
+    typeFilterOptions.innerHTML = "";
+
+    const present = new Set();
+    list().forEach(p => p.types.forEach(type => present.add(type)));
+
+    TYPE_ORDER
+        .filter(type => present.has(type))
+        .forEach(type => {
+
+            const chip = buildChip(
+                "type-chip",
+                TYPE_LABELS[type],
+                st().selectedTypes.has(type),
+                "checkbox",
+                input => {
+
+                    if (input.checked) {
+                        st().selectedTypes.add(type);
+                    } else {
+                        st().selectedTypes.delete(type);
+                    }
+
+                    updateFilterChips();
+                    render();
+                },
+                TYPE_COLORS[type]
+            );
+
+            typeFilterOptions.appendChild(chip);
+
+        });
 
 }
 
 function updateFilterChips() {
 
     document
-        .querySelectorAll(".status-chip")
+        .querySelectorAll(
+            ".status-chip, .category-chip, .region-chip, .type-chip"
+        )
         .forEach(chip => {
-
-            const radio =
-                chip.querySelector("input");
-
-            chip.classList.toggle(
-                "active",
-                radio.checked
-            );
-
+            chip.classList.toggle("active", chip.querySelector("input").checked);
         });
 
-    document
-        .querySelectorAll(".category-chip")
-        .forEach(chip => {
-
-            const checkbox =
-                chip.querySelector("input");
-
-            chip.classList.toggle(
-                "active",
-                checkbox.checked
-            );
-
-        });
-
-    document
-        .querySelectorAll(".type-chip")
-        .forEach(chip => {
-
-            const checkbox =
-                chip.querySelector("input");
-
-            chip.classList.toggle(
-                "active",
-                checkbox.checked
-            );
-
-        });
+    const s = st();
 
     const totalActive =
-        (statusFilter !== "all" ? 1 : 0) +
-        selectedCategories.size +
-        selectedTypes.size;
+        (s.statusFilter !== "all" ? 1 : 0) +
+        s.selectedCategories.size +
+        s.selectedRegions.size +
+        s.selectedTypes.size;
 
-    filterBadge.textContent =
-        totalActive;
+    filterBadge.textContent = totalActive;
 
     updateActiveSummary();
+}
 
+function activeFilterLabels() {
+
+    const s = st();
+    const active = [];
+
+    if (s.statusFilter !== "all") {
+        active.push(config().statusLabels[s.statusFilter]);
+    }
+
+    s.selectedRegions.forEach(region => {
+        active.push(config().regionLabels[region]);
+    });
+
+    s.selectedCategories.forEach(category => {
+        active.push(config().categoryLabels[category]);
+    });
+
+    s.selectedTypes.forEach(type => {
+        active.push(TYPE_LABELS[type]);
+    });
+
+    return active;
 }
 
 function updateActiveSummary() {
 
-    const active = [];
+    const active = activeFilterLabels();
 
-    if (statusFilter !== "all") {
-        active.push(
-            statusFilter === "owned"
-                ? "Tenho"
-                : "Faltam"
-        );
+    activeSummary.innerHTML =
+        "<strong>Filtros ativos:</strong> " +
+        (active.length === 0 ? "nenhum" : active.join(" · "));
+}
+
+function clearFilters() {
+
+    const s = st();
+
+    s.statusFilter = "all";
+    s.selectedCategories.clear();
+    s.selectedRegions.clear();
+    s.selectedTypes.clear();
+
+    renderStatusFilters();
+    renderRegionFilters();
+    renderCategoryFilters();
+    renderTypeFilters();
+
+    updateFilterChips();
+    render();
+}
+
+/* ======================================================
+   Render
+   ====================================================== */
+
+function refreshCardMark(card, p) {
+
+    const mark = markOf(p);
+
+    card.classList.toggle("owned", mark === MARK_OWNED);
+    card.classList.toggle("waiting", mark === MARK_WAITING);
+
+    card.setAttribute(
+        "aria-pressed",
+        mark === MARK_NONE ? "false" : "true"
+    );
+
+    card.setAttribute(
+        "aria-label",
+        p.name + " — " + (
+            mark === MARK_OWNED ? "já tenho" :
+            mark === MARK_WAITING ? "tenho, aguardando evento" :
+            "não tenho"
+        )
+    );
+
+}
+
+function cardMetaText(p) {
+
+    const parts = [];
+
+    if (p.region && config().regionLabels) {
+        parts.push(config().regionLabels[p.region]);
     }
 
-    selectedCategories.forEach(category => {
-        active.push(
-            CATEGORY_LABELS[category]
-        );
-    });
+    const categoryLabel = config().categoryLabels[p.category];
 
-    selectedTypes.forEach(type => {
-        active.push(
-            TYPE_LABELS[type]
-        );
-    });
-
-    if (active.length === 0) {
-
-        activeSummary.innerHTML =
-            "<strong>Filtros ativos:</strong> nenhum";
-
-    } else {
-
-        activeSummary.innerHTML =
-            "<strong>Filtros ativos:</strong> " +
-            active.join(" · ");
-
+    if (categoryLabel) {
+        parts.push(categoryLabel);
     }
 
+    return parts.join(" · ");
 }
 
 function render() {
 
     grid.innerHTML = "";
 
-    const visible =
-        POKEMON.filter(matchesFilters);
+    const visible = list().filter(matchesFilters);
 
     if (visible.length === 0) {
 
-        const empty =
-            document.createElement("div");
+        const empty = document.createElement("div");
 
-        empty.className =
-            "empty-state";
-
-        empty.textContent =
-            "Nenhuma Mega Evolução encontrada com esses filtros.";
+        empty.className = "empty-state";
+        empty.textContent = config().emptyMessage;
 
         grid.appendChild(empty);
 
@@ -518,150 +1166,138 @@ function render() {
 
     visible.forEach(p => {
 
-        const card =
-            document.createElement("div");
+        const card = document.createElement("div");
 
-        card.className =
-            "card" +
-            (owned[p.slug]
-                ? " owned"
-                : "");
+        card.className = "card";
+        card.setAttribute("role", "button");
+        card.setAttribute("tabindex", "0");
 
-        card.setAttribute(
-            "role",
-            "button"
-        );
+        const typesHtml = p.types.map(type => {
 
-        card.setAttribute(
-            "tabindex",
-            "0"
-        );
+            const color = TYPE_COLORS[type];
 
-        card.setAttribute(
-            "aria-pressed",
-            owned[p.slug]
-                ? "true"
-                : "false"
-        );
+            return (
+                '<span class="type-badge" style="background:' + color + '22;' +
+                'color:' + color + ';border-color:' + color + '55;">' +
+                TYPE_LABELS[type] +
+                '</span>'
+            );
 
-        const typesHtml =
-            p.types.map(type => {
-
-                const label =
-                    TYPE_LABELS[type];
-
-                const color =
-                    TYPE_COLORS[type];
-
-                return (
-                    '<span class="type-badge" ' +
-                    'style="background:' +
-                    color +
-                    '22;color:' +
-                    color +
-                    ';border-color:' +
-                    color +
-                    '55;">' +
-                    label +
-                    '</span>'
-                );
-
-            }).join("");
+        }).join("");
 
         card.innerHTML =
 
-            '<div class="dex">#' +
-            String(p.dex).padStart(3, "0") +
-            '</div>' +
+            '<div class="dex">#' + String(p.dex).padStart(3, "0") + '</div>' +
 
             '<div class="check">' +
 
-                '<svg ' +
-                    'viewBox="0 0 24 24" ' +
-                    'fill="none" ' +
-                    'stroke="#0e0a1a" ' +
-                    'stroke-width="3" ' +
-                    'stroke-linecap="round" ' +
-                    'stroke-linejoin="round">' +
-
+                '<svg class="icon-check" viewBox="0 0 24 24" fill="none" ' +
+                    'stroke="#0e0a1a" stroke-width="3" ' +
+                    'stroke-linecap="round" stroke-linejoin="round">' +
                     '<polyline points="20 6 9 17 4 12"></polyline>' +
+                '</svg>' +
 
+                '<svg class="icon-wait" viewBox="0 0 24 24" fill="none" ' +
+                    'stroke="#0e0a1a" stroke-width="2.6" ' +
+                    'stroke-linecap="round" stroke-linejoin="round">' +
+                    '<circle cx="12" cy="12" r="9"></circle>' +
+                    '<polyline points="12 7 12 12 16 14"></polyline>' +
                 '</svg>' +
 
             '</div>' +
 
-            '<img ' +
-                'alt="' +
-                p.name +
-                '" ' +
-                'loading="lazy">' +
+            '<img alt="' + p.name + '" loading="lazy">' +
 
-            '<div class="name">' +
-                p.name +
-            '</div>' +
+            '<div class="name">' + p.name + '</div>' +
 
-            '<div class="type-row">' +
-                typesHtml +
-            '</div>' +
+            '<div class="type-row">' + typesHtml + '</div>' +
 
-            '<div class="category-badge">' +
-                CATEGORY_LABELS[p.category] +
-            '</div>';
+            '<div class="category-badge">' + cardMetaText(p) + '</div>';
 
-        const image =
-            card.querySelector("img");
+        attachImageFallback(card.querySelector("img"), p);
 
-        attachImageFallback(
-            image,
-            p
-        );
+        refreshCardMark(card, p);
 
-        function toggle() {
+        function applyMark(mark) {
 
-            owned[p.slug] =
-                !owned[p.slug];
-
-            persist();
-
-            card.classList.toggle(
-                "owned",
-                !!owned[p.slug]
-            );
-
-            card.setAttribute(
-                "aria-pressed",
-                owned[p.slug]
-                    ? "true"
-                    : "false"
-            );
-
+            setMark(p, mark);
+            refreshCardMark(card, p);
             updateProgress();
 
-            render();
+            /* Com filtro de status ativo o card pode sair da lista. */
+            if (st().statusFilter !== "all") {
+                render();
+            }
 
         }
 
-        card.addEventListener(
-            "click",
-            toggle
-        );
+        /* 1 clique: alterna "tenho" (verde) */
+        function toggleOwned() {
+            applyMark(
+                markOf(p) === MARK_OWNED ? MARK_NONE : MARK_OWNED
+            );
+        }
 
-        card.addEventListener(
-            "keydown",
-            e => {
+        /* 2 cliques: alterna "aguardando evento" (amarelo) */
+        function toggleWaiting() {
+            applyMark(
+                markOf(p) === MARK_WAITING ? MARK_NONE : MARK_WAITING
+            );
+        }
 
-                if (
-                    e.key === "Enter" ||
-                    e.key === " "
-                ) {
+        if (config().hasWaitingState) {
 
-                    e.preventDefault();
-                    toggle();
+            /*
+             * Distingue 1 de 2 cliques: o primeiro clique agenda a ação
+             * e o segundo (se vier dentro da janela) a cancela, deixando
+             * o dblclick tratar. Sem isso, o duplo clique executaria
+             * também a ação de clique simples.
+             */
+            let clickTimer = null;
 
+            card.addEventListener("click", () => {
+
+                if (clickTimer) {
+                    return;
+                }
+
+                clickTimer = setTimeout(() => {
+                    clickTimer = null;
+                    toggleOwned();
+                }, 230);
+
+            });
+
+            card.addEventListener("dblclick", () => {
+
+                clearTimeout(clickTimer);
+                clickTimer = null;
+
+                toggleWaiting();
+
+            });
+
+        } else {
+
+            card.addEventListener("click", toggleOwned);
+
+        }
+
+        card.addEventListener("keydown", e => {
+
+            if (e.key === "Enter" || e.key === " ") {
+
+                e.preventDefault();
+
+                if (e.shiftKey && config().hasWaitingState) {
+                    toggleWaiting();
+                } else {
+                    toggleOwned();
                 }
 
             }
-        );
+
+        });
 
         grid.appendChild(card);
 
@@ -670,313 +1306,288 @@ function render() {
     updateProgress();
 }
 
-function clearFilters() {
+/* ======================================================
+   Troca de aba
+   ====================================================== */
 
-    statusFilter = "all";
-    selectedCategories.clear();
-    selectedTypes.clear();
+function applyTabChrome() {
 
-    document
-        .querySelectorAll(
-            'input[name="statusFilter"]'
-        )
-        .forEach(radio => {
+    const c = config();
 
-            radio.checked =
-                radio.value === "all";
+    pageTitle.textContent = c.pageTitle;
+    pageSubtitle.textContent = c.pageSubtitle;
 
-        });
+    searchInput.placeholder = c.searchPlaceholder;
+    searchInput.value = st().search;
 
-    document
-        .querySelectorAll(
-            ".category-chip input, .type-chip input"
-        )
-        .forEach(input => {
+    footerNote.textContent = c.footerNote;
+    footerSource.href = c.footerSource;
 
-            input.checked = false;
+    legend.classList.toggle("hidden", !c.hasWaitingState);
 
-        });
-
-    updateFilterChips();
-    render();
-
+    document.title = c.pageTitle + " — Pokémon GO";
 }
+
+function refreshTabUI() {
+
+    applyTabChrome();
+
+    renderStatusFilters();
+    renderRegionFilters();
+    renderCategoryFilters();
+    renderTypeFilters();
+    updateFilterChips();
+
+    render();
+}
+
+function switchTab(tabId) {
+
+    if (!TABS[tabId] || tabId === currentTabId) {
+        return;
+    }
+
+    currentTabId = tabId;
+
+    document.querySelectorAll(".tab-btn").forEach(btn => {
+
+        const isActive = btn.dataset.tab === tabId;
+
+        btn.classList.toggle("active", isActive);
+        btn.setAttribute("aria-selected", isActive ? "true" : "false");
+
+    });
+
+    refreshTabUI();
+}
+
+/* ======================================================
+   Exportação: itens e contadores
+   ====================================================== */
 
 function makeExportItems() {
+    return list().filter(matchesFilters);
+}
 
-    const items =
-        POKEMON.filter(matchesFilters);
+function exportCounters(items) {
 
-    return items;
+    const s = st();
+
+    const anyFilterActive =
+        s.statusFilter !== "all" ||
+        s.selectedCategories.size > 0 ||
+        s.selectedRegions.size > 0 ||
+        s.selectedTypes.size > 0 ||
+        s.search !== "";
+
+    const caughtInView = items.filter(p => isCaught(p)).length;
+    const totalCaught = list().filter(p => isCaught(p)).length;
+
+    const count = anyFilterActive ? caughtInView : totalCaught;
+    const denom = anyFilterActive ? items.length : list().length;
+
+    const pct = denom > 0 ? Math.round((count / denom) * 100) : 0;
+
+    const ownedInView = items.filter(
+        p => markOf(p) === MARK_OWNED
+    ).length;
+
+    const waitingInView = items.filter(
+        p => markOf(p) === MARK_WAITING
+    ).length;
+
+    return { count, denom, pct, ownedInView, waitingInView };
+}
+
+function exportFilterText() {
+
+    const active = activeFilterLabels();
+
+    return active.length > 0
+        ? active.join(" · ")
+        : config().allLabel;
+}
+
+function exportFileName(extension) {
+
+    return (
+        config().exportFilePrefix +
+        "-" +
+        new Date().toISOString().slice(0, 10) +
+        "." +
+        extension
+    );
 
 }
+
+/* ======================================================
+   Exportação PNG
+   ====================================================== */
 
 async function prepareExport() {
 
-    const items =
-        makeExportItems();
+    const items = makeExportItems();
 
     if (items.length === 0) {
-
-        showToast(
-            "Não há Pokémon para exportar com os filtros atuais."
-        );
-
+        showToast("Não há Pokémon para exportar com os filtros atuais.");
         return null;
     }
 
     exportStage.innerHTML = "";
 
-    const exportCard =
-        document.createElement("div");
+    const exportCard = document.createElement("div");
+    exportCard.className = "export-card";
 
-    exportCard.className =
-        "export-card";
+    const counters = exportCounters(items);
+    const filterText = exportFilterText();
 
-    const count =
-        items.filter(
-            p => owned[p.slug]
-        ).length;
+    let pills =
+        '<span class="export-pill">Visualização: ' +
+        items.length + ' Pokémon</span>';
 
-    const total =
-        POKEMON.length;
+    if (config().hasWaitingState) {
 
-    const pct =
-        Math.round(
-            (count / total) * 100
-        );
+        pills +=
+            '<span class="export-pill owned-pill">' +
+            '<span class="dot"></span>' +
+            counters.ownedInView + ' já tenho</span>' +
+            '<span class="export-pill wait-pill">' +
+            '<span class="dot"></span>' +
+            counters.waitingInView + ' aguardando evento</span>';
 
-    const active =
-        [];
-
-    if (statusFilter !== "all") {
-        active.push(
-            statusFilter === "owned"
-                ? "Tenho"
-                : "Faltam"
-        );
     }
 
-    selectedCategories.forEach(category => {
-        active.push(
-            CATEGORY_LABELS[category]
-        );
-    });
-
-    selectedTypes.forEach(type => {
-        active.push(
-            TYPE_LABELS[type]
-        );
-    });
-
-    const filterText =
-        active.length > 0
-            ? active.join(" · ")
-            : "Todos os Pokémon";
+    pills +=
+        '<span class="export-pill">Gerado em ' +
+        new Date().toLocaleDateString("pt-BR") + '</span>';
 
     exportCard.innerHTML =
 
         '<div class="export-head">' +
-
             '<div>' +
-
-                '<h1 class="export-title">' +
-                    'Mega Dex' +
-                '</h1>' +
-
+                '<h1 class="export-title">' + config().exportTitle + '</h1>' +
                 '<div class="export-subtitle">' +
-                    'Meu progresso de Mega Evoluções' +
+                    config().exportSubtitle +
                 '</div>' +
-
             '</div>' +
-
             '<div class="export-stat">' +
-
                 '<div class="big">' +
-                    count +
-                    ' / ' +
-                    total +
+                    counters.count + ' / ' + counters.denom +
                 '</div>' +
-
                 '<div class="small">' +
-                    pct +
-                    '% completo · ' +
-                    filterText +
+                    counters.pct + '% completo · ' + filterText +
                 '</div>' +
-
             '</div>' +
-
         '</div>' +
 
-        '<div class="export-info">' +
-
-            '<span class="export-pill">' +
-                'Visualização: ' +
-                items.length +
-                ' Pokémon' +
-            '</span>' +
-
-            '<span class="export-pill">' +
-                'Gerado em ' +
-                new Date().toLocaleDateString(
-                    "pt-BR"
-                ) +
-            '</span>' +
-
-        '</div>' +
+        '<div class="export-info">' + pills + '</div>' +
 
         '<div class="export-grid"></div>' +
 
         '<div class="export-footer">' +
-
-            '<div>' +
-                'Mega Dex · Progresso pessoal' +
-            '</div>' +
-
+            '<div>' + config().exportTitle + ' · Progresso pessoal</div>' +
             '<div class="export-watermark">' +
                 'X: @Jopdot · Insta: @coutinho_.davi · GitHub: DaviCoutinho-19' +
             '</div>' +
-
         '</div>';
 
-    const exportGrid =
-        exportCard.querySelector(
-            ".export-grid"
-        );
+    const exportGrid = exportCard.querySelector(".export-grid");
 
-    for (const p of items) {
+    /*
+     * Pré-carrega todas as imagens como data URL para que o
+     * html2canvas não precise buscar nada na rede (nem lidar com CORS).
+     */
+    const dataUrls = await Promise.all(
+        items.map(p => resolvePokemonDataURL(p))
+    );
 
-        const item =
-            document.createElement("div");
+    items.forEach((p, index) => {
+
+        const mark = markOf(p);
+
+        const item = document.createElement("div");
 
         item.className =
             "export-pokemon" +
-            (owned[p.slug] ? " owned" : "");
+            (mark === MARK_OWNED ? " owned" : "") +
+            (mark === MARK_WAITING ? " waiting" : "");
 
-        const typeText =
-            p.types
-                .map(type =>
-                    TYPE_LABELS[type]
-                )
-                .join(" / ");
+        const typeText = p.types
+            .map(type => TYPE_LABELS[type])
+            .join(" / ");
+
+        const dataUrl = dataUrls[index];
+
+        const imgHtml = dataUrl
+            ? '<img alt="' + p.name + '" src="' + dataUrl + '">'
+            : '<div style="width:80px;height:80px;margin:4px auto 5px;"></div>';
+
+        /* SVG em vez de glifo: renderiza igual em qualquer sistema. */
+        const markHtml =
+            mark === MARK_OWNED
+                ? '<svg width="13" height="13" viewBox="0 0 24 24" ' +
+                  'fill="none" stroke="#4fe0c4" stroke-width="3.4" ' +
+                  'stroke-linecap="round" stroke-linejoin="round">' +
+                  '<polyline points="20 6 9 17 4 12"></polyline></svg>'
+                : mark === MARK_WAITING
+                    ? '<svg width="13" height="13" viewBox="0 0 24 24" ' +
+                      'fill="none" stroke="#ffc65c" stroke-width="2.6" ' +
+                      'stroke-linecap="round" stroke-linejoin="round">' +
+                      '<circle cx="12" cy="12" r="9"></circle>' +
+                      '<polyline points="12 7 12 12 16 14"></polyline></svg>'
+                    : '';
 
         item.innerHTML =
 
             '<div class="export-dex">' +
-                "#" +
-                String(p.dex).padStart(3, "0") +
+                '<span>#' + String(p.dex).padStart(3, "0") + '</span>' +
+                markHtml +
             '</div>' +
 
-            '<img alt="' +
-                p.name +
-            '">' +
+            imgHtml +
 
-            '<div class="p-name">' +
-                p.name +
-            '</div>' +
-
-            '<div class="p-types">' +
-                typeText +
-            '</div>' +
-
-            '<div class="p-category">' +
-                CATEGORY_LABELS[p.category] +
-            '</div>';
-
-        const img =
-            item.querySelector("img");
-
-        const urls =
-            getImageUrls(p);
-
-        img.crossOrigin = "anonymous";
-        img.src = urls.normal;
-
-        img.addEventListener(
-            "error",
-            function () {
-
-                if (
-                    this.dataset.fallback !== "true"
-                ) {
-
-                    this.dataset.fallback =
-                        "true";
-
-                    this.src =
-                        urls.placeholder;
-
-                }
-
-            }
-        );
+            '<div class="p-name">' + p.name + '</div>' +
+            '<div class="p-types">' + typeText + '</div>' +
+            '<div class="p-category">' + cardMetaText(p) + '</div>';
 
         exportGrid.appendChild(item);
 
-    }
+    });
 
-    exportStage.appendChild(
-        exportCard
-    );
+    exportStage.appendChild(exportCard);
 
     return exportCard;
 }
 
 async function exportPNG() {
 
-    const exportCard =
-        await prepareExport();
+    showToast("Preparando a imagem...");
+
+    const exportCard = await prepareExport();
 
     if (!exportCard) {
         return;
     }
 
-    showToast(
-        "Preparando a imagem..."
-    );
-
-    /*
-     * Aguarda um pouco para que as imagens
-     * externas tenham tempo de carregar.
-     */
-    await new Promise(resolve =>
-        setTimeout(resolve, 1300)
-    );
+    await new Promise(resolve => setTimeout(resolve, 200));
 
     try {
 
-        const canvas =
-            await html2canvas(
-                exportCard,
-                {
-                    backgroundColor: "#0e0a1a",
-                    scale: 2,
-                    useCORS: true,
-                    allowTaint: false,
-                    logging: false
-                }
-            );
+        const canvas = await html2canvas(exportCard, {
+            backgroundColor: "#0e0a1a",
+            scale: 2,
+            useCORS: true,
+            allowTaint: false,
+            logging: false
+        });
 
-        const link =
-            document.createElement("a");
+        const link = document.createElement("a");
 
-        link.download =
-            "mega-dex-" +
-            new Date()
-                .toISOString()
-                .slice(0, 10) +
-            ".png";
-
-        link.href =
-            canvas.toDataURL(
-                "image/png"
-            );
-
+        link.download = exportFileName("png");
+        link.href = canvas.toDataURL("image/png");
         link.click();
 
-        showToast(
-            "PNG exportado com sucesso."
-        );
+        showToast("PNG exportado com sucesso.");
 
     } catch (e) {
 
@@ -986,9 +1597,15 @@ async function exportPNG() {
             "O PNG não pôde ser gerado. Use o SVG, que mantém o visual e as imagens."
         );
 
+    } finally {
+        exportStage.innerHTML = "";
     }
 
 }
+
+/* ======================================================
+   Exportação SVG
+   ====================================================== */
 
 function escapeXml(text) {
 
@@ -1001,19 +1618,20 @@ function escapeXml(text) {
 
 }
 
-function exportSVG() {
+async function exportSVG() {
 
-    const items =
-        makeExportItems();
+    const items = makeExportItems();
 
     if (items.length === 0) {
-
-        showToast(
-            "Não há Pokémon para exportar com os filtros atuais."
-        );
-
+        showToast("Não há Pokémon para exportar com os filtros atuais.");
         return;
     }
+
+    showToast("Preparando o SVG...");
+
+    const dataUrls = await Promise.all(
+        items.map(p => resolvePokemonDataURL(p))
+    );
 
     const width = 1400;
     const cardWidth = 205;
@@ -1021,67 +1639,22 @@ function exportSVG() {
     const gap = 16;
     const columns = 6;
 
-    const rows =
-        Math.ceil(
-            items.length / columns
-        );
+    const rows = Math.ceil(items.length / columns);
 
     const top = 220;
     const footer = 100;
 
-    const height =
-        top +
-        rows * (cardHeight + gap) +
-        footer;
+    const height = top + rows * (cardHeight + gap) + footer;
 
-    const count =
-        items.filter(
-            p => owned[p.slug]
-        ).length;
-
-    const total =
-        POKEMON.length;
-
-    const pct =
-        Math.round(
-            (count / total) * 100
-        );
-
-    const active =
-        [];
-
-    if (statusFilter !== "all") {
-        active.push(
-            statusFilter === "owned"
-                ? "Tenho"
-                : "Faltam"
-        );
-    }
-
-    selectedCategories.forEach(category => {
-        active.push(
-            CATEGORY_LABELS[category]
-        );
-    });
-
-    selectedTypes.forEach(type => {
-        active.push(
-            TYPE_LABELS[type]
-        );
-    });
-
-    const filterText =
-        active.length > 0
-            ? active.join(" · ")
-            : "Todos os Pokémon";
+    const counters = exportCounters(items);
+    const filterText = exportFilterText();
 
     let svg = "";
 
     svg +=
         '<svg xmlns="http://www.w3.org/2000/svg" ' +
         'xmlns:xlink="http://www.w3.org/1999/xlink" ' +
-        'width="' + width + '" ' +
-        'height="' + height + '" ' +
+        'width="' + width + '" height="' + height + '" ' +
         'viewBox="0 0 ' + width + ' ' + height + '">';
 
     svg +=
@@ -1098,568 +1671,387 @@ function exportSVG() {
             '</linearGradient>' +
         '</defs>';
 
-    svg +=
-        '<rect width="100%" height="100%" fill="url(#bg)"/>';
+    svg += '<rect width="100%" height="100%" fill="url(#bg)"/>';
 
     svg +=
         '<text x="60" y="82" fill="url(#title)" ' +
         'font-family="Rajdhani, Arial, sans-serif" ' +
-        'font-size="64" font-weight="700">Mega Dex</text>';
+        'font-size="64" font-weight="700">' +
+        escapeXml(config().exportTitle) + '</text>';
 
     svg +=
         '<text x="60" y="118" fill="#9c8fc0" ' +
         'font-family="Inter, Arial, sans-serif" font-size="20">' +
-        'Meu progresso de Mega Evoluções</text>';
+        escapeXml(config().exportSubtitle) + '</text>';
 
     svg +=
         '<text x="1335" y="87" fill="#f2eefc" text-anchor="end" ' +
         'font-family="Rajdhani, Arial, sans-serif" font-size="40" font-weight="700">' +
-        count + ' / ' + total +
-        '</text>';
+        counters.count + ' / ' + counters.denom + '</text>';
 
     svg +=
         '<text x="1335" y="118" fill="#9c8fc0" text-anchor="end" ' +
         'font-family="Inter, Arial, sans-serif" font-size="16">' +
-        pct + '% completo · ' +
-        escapeXml(filterText) +
-        '</text>';
+        counters.pct + '% completo · ' + escapeXml(filterText) + '</text>';
+
+    /* Legenda das cores, quando a aba usa o estado amarelo. */
+    if (config().hasWaitingState) {
+
+        svg +=
+            '<circle cx="66" cy="146" r="6" fill="#4fe0c4"/>' +
+            '<text x="80" y="151" fill="#9ff0e0" ' +
+            'font-family="Inter, Arial, sans-serif" font-size="13">' +
+            counters.ownedInView + ' já tenho</text>';
+
+        svg +=
+            '<circle cx="216" cy="146" r="6" fill="#ffc65c"/>' +
+            '<text x="230" y="151" fill="#ffdf9e" ' +
+            'font-family="Inter, Arial, sans-serif" font-size="13">' +
+            counters.waitingInView + ' aguardando evento</text>';
+
+    }
 
     svg +=
-        '<line x1="60" y1="160" x2="1340" y2="160" ' +
+        '<line x1="60" y1="175" x2="1340" y2="175" ' +
         'stroke="#3a2d52" stroke-width="1"/>';
 
     items.forEach((p, index) => {
 
-        const col =
-            index % columns;
+        const col = index % columns;
+        const row = Math.floor(index / columns);
 
-        const row =
-            Math.floor(
-                index / columns
-            );
+        const x = 60 + col * (cardWidth + gap);
+        const y = top + row * (cardHeight + gap);
 
-        const x =
-            60 +
-            col *
-            (cardWidth + gap);
-
-        const y =
-            top +
-            row *
-            (cardHeight + gap);
+        const mark = markOf(p);
 
         const border =
-            owned[p.slug]
-                ? "#4fe0c4"
-                : "#453565";
+            mark === MARK_OWNED ? "#4fe0c4" :
+            mark === MARK_WAITING ? "#ffc65c" :
+            "#453565";
 
         svg +=
             '<rect x="' + x + '" y="' + y +
-            '" width="' + cardWidth +
-            '" height="' + cardHeight +
-            '" rx="16" fill="#1d1633" stroke="' +
-            border +
+            '" width="' + cardWidth + '" height="' + cardHeight +
+            '" rx="16" fill="#1d1633" stroke="' + border +
             '" stroke-opacity="' +
-            (owned[p.slug] ? "0.65" : "0.85") +
-            '"/>';
+            (mark === MARK_NONE ? "0.85" : "0.7") + '"/>';
 
         svg +=
-            '<text x="' + (x + 15) +
-            '" y="' + (y + 25) +
-            '" fill="#6a5d8f" ' +
-            'font-family="Rajdhani, Arial, sans-serif" ' +
-            'font-size="14">' +
-            "#" +
-            String(p.dex).padStart(3, "0") +
-            '</text>';
+            '<text x="' + (x + 15) + '" y="' + (y + 25) +
+            '" fill="#6a5d8f" font-family="Rajdhani, Arial, sans-serif" ' +
+            'font-size="14">#' + String(p.dex).padStart(3, "0") + '</text>';
 
-        const urls =
-            getImageUrls(p);
+        const dataUrl = dataUrls[index];
 
-        svg +=
-            '<image href="' +
-            urls.normal +
-            '" xlink:href="' +
-            urls.normal +
-            '" x="' +
-            (x + 62) +
-            '" y="' +
-            (y + 35) +
-            '" width="80" height="80" preserveAspectRatio="xMidYMid meet"/>';
+        if (dataUrl) {
+            svg +=
+                '<image href="' + dataUrl + '" xlink:href="' + dataUrl +
+                '" x="' + (x + 62) + '" y="' + (y + 35) +
+                '" width="80" height="80" ' +
+                'preserveAspectRatio="xMidYMid meet"/>';
+        }
 
         svg +=
-            '<text x="' +
-            (x + cardWidth / 2) +
-            '" y="' +
-            (y + 142) +
+            '<text x="' + (x + cardWidth / 2) + '" y="' + (y + 142) +
             '" fill="#d5cae8" text-anchor="middle" ' +
             'font-family="Rajdhani, Arial, sans-serif" ' +
             'font-size="16" font-weight="600">' +
-            escapeXml(p.name) +
-            '</text>';
+            escapeXml(p.name) + '</text>';
 
         svg +=
-            '<text x="' +
-            (x + cardWidth / 2) +
-            '" y="' +
-            (y + 166) +
+            '<text x="' + (x + cardWidth / 2) + '" y="' + (y + 166) +
             '" fill="#9c8fc0" text-anchor="middle" ' +
-            'font-family="Inter, Arial, sans-serif" ' +
-            'font-size="11">' +
-            escapeXml(
-                p.types
-                    .map(type => TYPE_LABELS[type])
-                    .join(" / ")
-            ) +
+            'font-family="Inter, Arial, sans-serif" font-size="11">' +
+            escapeXml(p.types.map(t => TYPE_LABELS[t]).join(" / ")) +
             '</text>';
 
         svg +=
-            '<text x="' +
-            (x + cardWidth / 2) +
-            '" y="' +
-            (y + 187) +
+            '<text x="' + (x + cardWidth / 2) + '" y="' + (y + 187) +
             '" fill="#6a5d8f" text-anchor="middle" ' +
-            'font-family="Inter, Arial, sans-serif" ' +
-            'font-size="10">' +
-            escapeXml(CATEGORY_LABELS[p.category]) +
-            '</text>';
+            'font-family="Inter, Arial, sans-serif" font-size="10">' +
+            escapeXml(cardMetaText(p)) + '</text>';
 
-        if (owned[p.slug]) {
+        if (mark === MARK_OWNED) {
 
             svg +=
-                '<circle cx="' +
-                (x + cardWidth - 21) +
-                '" cy="' +
-                (y + 21) +
+                '<circle cx="' + (x + cardWidth - 21) + '" cy="' + (y + 21) +
                 '" r="9" fill="#4fe0c4"/>';
 
             svg +=
-                '<path d="M' +
-                (x + cardWidth - 26) +
-                ' ' + (y + 21) +
-                ' l3 3 l6 -7" ' +
-                'fill="none" stroke="#0e0a1a" stroke-width="2.3" ' +
+                '<path d="M' + (x + cardWidth - 26) + ' ' + (y + 21) +
+                ' l3 3 l6 -7" fill="none" stroke="#0e0a1a" ' +
+                'stroke-width="2.3" stroke-linecap="round" ' +
+                'stroke-linejoin="round"/>';
+
+        } else if (mark === MARK_WAITING) {
+
+            svg +=
+                '<circle cx="' + (x + cardWidth - 21) + '" cy="' + (y + 21) +
+                '" r="9" fill="#ffc65c"/>';
+
+            /* Ponteiros de relógio, indicando "aguardando". */
+            svg +=
+                '<path d="M' + (x + cardWidth - 21) + ' ' + (y + 16) +
+                ' L' + (x + cardWidth - 21) + ' ' + (y + 21) +
+                ' L' + (x + cardWidth - 17.5) + ' ' + (y + 23) +
+                '" fill="none" stroke="#0e0a1a" stroke-width="2.1" ' +
                 'stroke-linecap="round" stroke-linejoin="round"/>';
 
         }
 
     });
 
-    const footerY =
-        height - 55;
+    const footerY = height - 55;
 
     svg +=
-        '<line x1="60" y1="' +
-        (height - 82) +
-        '" x2="1340" y2="' +
-        (height - 82) +
-        '" stroke="#3a2d52" stroke-width="1"/>';
+        '<line x1="60" y1="' + (height - 82) + '" x2="1340" y2="' +
+        (height - 82) + '" stroke="#3a2d52" stroke-width="1"/>';
 
     svg +=
-        '<text x="60" y="' +
-        footerY +
-        '" fill="#6a5d8f" ' +
+        '<text x="60" y="' + footerY + '" fill="#6a5d8f" ' +
         'font-family="Inter, Arial, sans-serif" font-size="13">' +
-        'Mega Dex · Progresso pessoal' +
-        '</text>';
+        escapeXml(config().exportTitle) + ' · Progresso pessoal</text>';
 
     svg +=
-        '<text x="1340" y="' +
-        footerY +
-        '" fill="#9c8fc0" text-anchor="end" ' +
-        'font-family="Inter, Arial, sans-serif" font-size="13">' +
+        '<text x="1340" y="' + footerY + '" fill="#9c8fc0" ' +
+        'text-anchor="end" font-family="Inter, Arial, sans-serif" ' +
+        'font-size="13">' +
         'X: @Jopdot · Insta: @coutinho_.davi · GitHub: DaviCoutinho-19' +
         '</text>';
 
-    svg +=
-        '</svg>';
+    svg += '</svg>';
 
-    const blob =
-        new Blob(
-            [svg],
-            {
-                type: "image/svg+xml;charset=utf-8"
-            }
-        );
+    const blob = new Blob([svg], {
+        type: "image/svg+xml;charset=utf-8"
+    });
 
-    const url =
-        URL.createObjectURL(blob);
+    const url = URL.createObjectURL(blob);
 
-    const link =
-        document.createElement("a");
+    const link = document.createElement("a");
 
-    link.download =
-        "mega-dex-" +
-        new Date()
-            .toISOString()
-            .slice(0, 10) +
-        ".svg";
-
+    link.download = exportFileName("svg");
     link.href = url;
     link.click();
 
-    setTimeout(() => {
-        URL.revokeObjectURL(url);
-    }, 1000);
+    setTimeout(() => URL.revokeObjectURL(url), 1000);
 
-    showToast(
-        "SVG exportado com sucesso."
-    );
-
+    showToast("SVG exportado com sucesso.");
 }
+
+/* ======================================================
+   Backup JSON (todas as abas)
+   ====================================================== */
 
 function exportJSON() {
 
-    const data = {
-        megaDexProgress_v1: owned,
-        exportedAt: new Date().toISOString()
-    };
+    const data = { exportedAt: new Date().toISOString() };
 
-    const json =
-        JSON.stringify(
-            data,
-            null,
-            2
-        );
+    Object.keys(TABS).forEach(tabId => {
+        data[TABS[tabId].storageKey] = state[tabId].marks;
+    });
 
-    const blob =
-        new Blob(
-            [json],
-            {
-                type: "application/json;charset=utf-8"
-            }
-        );
+    const blob = new Blob([JSON.stringify(data, null, 2)], {
+        type: "application/json;charset=utf-8"
+    });
 
-    const url =
-        URL.createObjectURL(blob);
+    const url = URL.createObjectURL(blob);
 
-    const link =
-        document.createElement("a");
+    const link = document.createElement("a");
 
     link.href = url;
-    link.download =
-        "mega-dex-progresso.json";
-
+    link.download = "pokemon-go-progresso.json";
     link.click();
 
-    setTimeout(() => {
-        URL.revokeObjectURL(url);
-    }, 1000);
+    setTimeout(() => URL.revokeObjectURL(url), 1000);
 
-    showToast(
-        "Progresso exportado."
-    );
-
+    showToast("Progresso de todas as abas exportado.");
 }
 
 function importJSONFile(file) {
 
-    const reader =
-        new FileReader();
+    const reader = new FileReader();
 
     reader.onload = () => {
 
         try {
 
-            const data =
-                JSON.parse(
-                    reader.result
-                );
+            const data = JSON.parse(reader.result);
 
-            const imported =
-                (data.megaDexProgress_v1 || data.owned || data);
+            let found = 0;
 
-            if (
-                !imported ||
-                typeof imported !== "object" ||
-                Array.isArray(imported)
-            ) {
-                throw new Error(
-                    "Formato inválido"
-                );
-            }
+            Object.keys(TABS).forEach(tabId => {
 
-            const clean = {};
-
-            POKEMON.forEach(p => {
+                const cfg = TABS[tabId];
+                const imported = data[cfg.storageKey] || (tabId === "mega" ? (data.owned || (cfg.list.some(p => Object.prototype.hasOwnProperty.call(data, p.slug)) ? data : null)) : null);
 
                 if (
-                    imported[p.slug] === true
+                    !imported ||
+                    typeof imported !== "object" ||
+                    Array.isArray(imported)
                 ) {
-                    clean[p.slug] = true;
+                    return;
                 }
+
+                const clean = {};
+
+                cfg.list.forEach(p => {
+
+                    const value = imported[p.slug];
+
+                    if (value === true || value === MARK_OWNED) {
+                        clean[p.slug] = MARK_OWNED;
+                    } else if (value === MARK_WAITING) {
+                        clean[p.slug] = MARK_WAITING;
+                    }
+
+                });
+
+                state[tabId].marks = clean;
+
+                try {
+                    localStorage.setItem(
+                        cfg.storageKey,
+                        JSON.stringify(clean)
+                    );
+                } catch (e) {
+                    /* ignora falha de storage */
+                }
+
+                found += 1;
 
             });
 
-            owned = clean;
+            if (found === 0) {
+                throw new Error("Nenhum progresso reconhecido");
+            }
 
-            persist();
             render();
 
-            showToast(
-                "Progresso importado com sucesso."
-            );
+            showToast("Progresso importado com sucesso.");
 
         } catch (e) {
-
-            showToast(
-                "O arquivo selecionado não é um backup válido do Mega Dex."
-            );
-
+            showToast("O arquivo selecionado não é um backup válido.");
         }
 
     };
 
-    reader.readAsText(
-        file,
-        "UTF-8"
-    );
-
+    reader.readAsText(file, "UTF-8");
 }
 
-/* Painel de filtros */
+/* ======================================================
+   Eventos
+   ====================================================== */
 
-filterToggle.addEventListener(
-    "click",
-    () => {
+tabs.addEventListener("click", event => {
 
-        const open =
-            filterPanelWrap.classList.toggle(
-                "open"
-            );
+    const btn = event.target.closest(".tab-btn");
 
-        filterToggle.classList.toggle(
-            "open",
-            open
-        );
+    if (btn) {
+        switchTab(btn.dataset.tab);
+    }
+
+});
+
+filterToggle.addEventListener("click", () => {
+
+    const open = filterPanelWrap.classList.toggle("open");
+
+    filterToggle.classList.toggle("open", open);
+
+});
+
+clearFiltersBtn.addEventListener("click", clearFilters);
+
+searchInput.addEventListener("input", event => {
+
+    st().search = event.target.value.trim();
+
+    render();
+
+});
+
+document.getElementById("resetBtn").addEventListener("click", () => {
+
+    if (
+        confirm(
+            'Apagar todo o progresso marcado da aba "' +
+            config().pageTitle + '"?'
+        )
+    ) {
+
+        st().marks = {};
+
+        persist();
+        render();
+
+        showToast("Progresso desta aba apagado.");
 
     }
-);
 
-/* Filtro de status */
+});
 
-document
-    .querySelectorAll(
-        'input[name="statusFilter"]'
-    )
-    .forEach(radio => {
+exportToggle.addEventListener("click", event => {
 
-        radio.addEventListener(
-            "change",
-            () => {
+    event.stopPropagation();
 
-                statusFilter =
-                    radio.value;
+    const open = exportDropdown.classList.toggle("open");
 
-                updateFilterChips();
-                render();
+    exportToggle.classList.toggle("open", open);
 
-            }
-        );
+});
 
-    });
+document.addEventListener("click", event => {
 
-/* Filtro de categorias */
-
-document
-    .querySelectorAll(
-        ".category-chip input"
-    )
-    .forEach(input => {
-
-        input.addEventListener(
-            "change",
-            () => {
-
-                if (input.checked) {
-                    selectedCategories.add(
-                        input.value
-                    );
-                } else {
-                    selectedCategories.delete(
-                        input.value
-                    );
-                }
-
-                updateFilterChips();
-                render();
-
-            }
-        );
-
-    });
-
-clearFiltersBtn.addEventListener(
-    "click",
-    clearFilters
-);
-
-/* Busca */
-
-document
-    .getElementById("searchInput")
-    .addEventListener(
-        "input",
-        event => {
-
-            currentSearch =
-                event.target.value.trim();
-
-            render();
-
-        }
-    );
-
-/* Reset do progresso */
-
-document
-    .getElementById("resetBtn")
-    .addEventListener(
-        "click",
-        () => {
-
-            if (
-                confirm(
-                    "Tem certeza que deseja apagar todo o seu progresso marcado?"
-                )
-            ) {
-
-                owned = {};
-
-                persist();
-                render();
-
-                showToast(
-                    "Progresso apagado."
-                );
-
-            }
-
-        }
-    );
-
-/* Menu de exportação */
-
-exportToggle.addEventListener(
-    "click",
-    event => {
-
-        event.stopPropagation();
-
-        const open =
-            exportDropdown.classList.toggle(
-                "open"
-            );
-
-        exportToggle.classList.toggle(
-            "open",
-            open
-        );
-
+    if (
+        !exportDropdown.contains(event.target) &&
+        !exportToggle.contains(event.target)
+    ) {
+        exportDropdown.classList.remove("open");
+        exportToggle.classList.remove("open");
     }
-);
 
-document.addEventListener(
-    "click",
-    event => {
+});
 
-        if (
-            !exportDropdown.contains(event.target) &&
-            !exportToggle.contains(event.target)
-        ) {
+function closeExportMenu() {
+    exportDropdown.classList.remove("open");
+    exportToggle.classList.remove("open");
+}
 
-            exportDropdown.classList.remove(
-                "open"
-            );
+exportPngBtn.addEventListener("click", async () => {
+    closeExportMenu();
+    await exportPNG();
+});
 
-            exportToggle.classList.remove(
-                "open"
-            );
+exportSvgBtn.addEventListener("click", async () => {
+    closeExportMenu();
+    await exportSVG();
+});
 
-        }
+exportJsonBtn.addEventListener("click", () => {
+    closeExportMenu();
+    exportJSON();
+});
 
+importJsonBtn.addEventListener("click", () => {
+    importFile.click();
+});
+
+importFile.addEventListener("change", () => {
+
+    const file = importFile.files[0];
+
+    if (file) {
+        importJSONFile(file);
     }
-);
 
-exportPngBtn.addEventListener(
-    "click",
-    async () => {
+    importFile.value = "";
 
-        exportDropdown.classList.remove(
-            "open"
-        );
+});
 
-        exportToggle.classList.remove(
-            "open"
-        );
+/* ======================================================
+   Inicialização
+   ====================================================== */
 
-        await exportPNG();
-
-    }
-);
-
-exportSvgBtn.addEventListener(
-    "click",
-    () => {
-
-        exportDropdown.classList.remove(
-            "open"
-        );
-
-        exportToggle.classList.remove(
-            "open"
-        );
-
-        exportSVG();
-
-    }
-);
-
-exportJsonBtn.addEventListener(
-    "click",
-    () => {
-
-        exportDropdown.classList.remove(
-            "open"
-        );
-
-        exportToggle.classList.remove(
-            "open"
-        );
-
-        exportJSON();
-
-    }
-);
-
-importJsonBtn.addEventListener(
-    "click",
-    () => {
-
-        importFile.click();
-
-    }
-);
-
-importFile.addEventListener(
-    "change",
-    () => {
-
-        const file =
-            importFile.files[0];
-
-        if (file) {
-            importJSONFile(file);
-        }
-
-        importFile.value = "";
-
-    }
-);
-
-/* Inicialização */
-
-renderTypeFilters();
-updateFilterChips();
-render();
+refreshTabUI();
 

@@ -2,26 +2,33 @@
 
 Um tracker de coleção para Pokémon GO, com progresso salvo no navegador.
 
-## Mega Dex: filtros e exportação
+## Três coleções em um só lugar
 
-A coleção Mega Dex possui 62 entradas de Mega Evoluções e Reversões Primais. O catálogo inclui entradas anunciadas na lista original; a presença de um Pokémon na coleção não indica sua disponibilidade atual no jogo.
+- **Mega Dex:** acompanhamento de Mega Evoluções e Reversões Primais.
+- **Safari Urbano:** tracker de coleção do evento realizado nos dias 26 e 27 de setembro, nas cidades de Rio de Janeiro, Lisboa, Brisbane, Marseille e Munique.
+- **Shundos Iniciais:** coleção dos iniciais de Kanto a Paldea em seus três estágios, com imagens shiny. Shundo significa shiny com IV 100%.
 
-- Marcação e desmarcação dos Pokémon obtidos.
-- Busca por nome ou número da Pokédex.
-- Painel de filtros por status, categoria e tipo.
-- Contador, barra e percentual de progresso.
-- Imagens externas com alternativa de carregamento.
-- Exportação da coleção filtrada em PNG e SVG, com marca d'água.
-- Exportação e importação de backup JSON, incluindo backups da primeira versão.
-- Limpeza do progresso com confirmação e layout adaptável a telas menores.
+As abas possuem marcações e progresso independentes. Os catálogos preservam as listas desta versão; a presença de um Pokémon não indica sua disponibilidade atual no jogo.
+
+- Busca por nome ou número, com filtros próprios para cada coleção.
+- Filtros por status, categoria/estágio e tipo; filtro por região nos Shundos Iniciais.
+- Estado Aguardando evento nos Shundos Iniciais.
+- Imagens externas com alternativas de carregamento.
+- Exportação PNG/SVG da aba atual, com os filtros e a marca d'água.
+- Backup JSON do progresso das três abas, com importação de backups anteriores da Mega Dex.
+- Limpeza de progresso apenas da aba atual, com confirmação.
 
 ## Como usar
 
-Mantenha `index.html` junto das pastas `css/` e `js/` e abra-o em um navegador. Clique nas cartas para marcar ou desmarcar os Pokémon obtidos.
+Mantenha `index.html` junto das pastas `css/` e `js/` e abra-o em um navegador. Selecione a coleção nas abas superiores.
 
-Abra o painel de filtros para combinar status, categoria e tipos. Use a busca para localizar Pokémon e o menu Exportar para escolher PNG, SVG ou backup JSON.
+Na Mega Dex e no Safari Urbano, clique nas cartas para marcar ou desmarcar os Pokémon obtidos. Nos Shundos Iniciais, um clique marca Tenho em verde; dois cliques marcam Aguardando evento em amarelo. Pelo teclado, use Enter ou espaço para Tenho e Shift + Enter ou Shift + espaço para Aguardando evento.
 
-Importar um backup substitui as marcações atuais pelos dados válidos desse arquivo. Exporte um backup antes de substituir ou limpar seu progresso.
+O estado Aguardando evento indica um Pokémon que você já possui e reservou para evoluir durante um evento. Ele também entra na contagem do progresso.
+
+Abra o painel de filtros para combinar as opções da coleção. No menu Exportar, escolha PNG/SVG para a aba atual ou JSON para salvar o progresso das três abas.
+
+A importação substitui as marcações das coleções presentes no backup; as outras abas são preservadas. Exporte um backup antes de importar ou limpar o progresso.
 
 ## Armazenamento do progresso
 
@@ -44,7 +51,7 @@ Não é necessário instalar dependências ou compilar o projeto. Fontes, imagen
 
 O Tracker Pokémon GO está sendo lançado em etapas, seguindo a evolução de suas funcionalidades. Cada atualização amplia os recursos disponíveis para acompanhar sua coleção.
 
-Esta atualização amplia a Mega Dex com novos filtros e exportação em imagem. Novas coleções e funcionalidades serão adicionadas nas próximas atualizações.
+Esta atualização reúne Mega Dex, Safari Urbano e Shundos Iniciais em uma interface com abas. Novas coleções e funcionalidades serão adicionadas nas próximas atualizações.
 
 ## Apoio no desenvolvimento
 
