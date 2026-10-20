@@ -2,33 +2,42 @@
 
 Um tracker de coleção para Pokémon GO, com progresso salvo no navegador.
 
-## Três coleções em um só lugar
+## Coleções regionais de shinies e shundos
 
-- **Mega Dex:** acompanhamento de Mega Evoluções e Reversões Primais.
-- **Safari Urbano:** tracker de coleção do evento realizado nos dias 26 e 27 de setembro, nas cidades de Rio de Janeiro, Lisboa, Brisbane, Marseille e Munique.
-- **Shundos Iniciais:** coleção dos iniciais de Kanto a Paldea em seus três estágios, com imagens shiny. Shundo significa shiny com IV 100%.
+Acompanhe suas coleções de Kanto, Johto, Hoenn, Sinnoh, Unova, Kalos, Alola, Galar, Hisui e Paldea. Uma coleção adicional, Outros, reúne Meltan e Melmetal. São 1.025 espécies, com uma forma principal por espécie nesta versão.
 
-As abas possuem marcações e progresso independentes. Os catálogos preservam as listas desta versão; a presença de um Pokémon não indica sua disponibilidade atual no jogo.
+As três coleções anteriores continuam disponíveis:
 
-- Busca por nome ou número, com filtros próprios para cada coleção.
-- Filtros por status, categoria/estágio e tipo; filtro por região nos Shundos Iniciais.
-- Estado Aguardando evento nos Shundos Iniciais.
-- Imagens externas com alternativas de carregamento.
-- Exportação PNG/SVG da aba atual, com os filtros e a marca d'água.
-- Backup JSON do progresso das três abas, com importação de backups anteriores da Mega Dex.
-- Limpeza de progresso apenas da aba atual, com confirmação.
+- **Mega Dex:** Mega Evoluções e Reversões Primais.
+- **Safari Urbano:** tracker de coleção do evento realizado nos dias 26 e 27 de setembro em Rio de Janeiro, Lisboa, Brisbane, Marseille e Munique.
+- **Shundos Iniciais:** iniciais de Kanto a Paldea em seus três estágios, com estado Aguardando evento.
+
+Cada coleção possui marcações e progresso independentes.
+
+- Um clique marca shiny; dois cliques marcam shundo nas coleções regionais.
+- Duas barras regionais: shinies, incluindo shundos, e shundos separadamente.
+- Filtros para coletados e faltantes, além de busca e tipos de Pokémon.
+- Imagens shiny e avisos para Pokémon ou shinies não liberados conforme os dados desta versão.
+- Exportação TXT da visualização atual, dos coletados ou dos faltantes.
+- Exportação PNG/SVG da visualização atual, com marca d'água.
+- Abas que podem ser ocultadas e restauradas sem apagar o progresso.
+- Backup JSON de todas as coleções e das abas ocultas, com importação de backups anteriores.
+
+Os catálogos incluem espécies ainda não lançadas. Os textos dos avisos foram atualizados em 20/10/2026. A disponibilidade não é atualizada automaticamente. A presença de um Pokémon no tracker não confirma sua disponibilidade atual no jogo.
 
 ## Como usar
 
-Mantenha `index.html` junto das pastas `css/` e `js/` e abra-o em um navegador. Selecione a coleção nas abas superiores.
+Mantenha `index.html` junto das pastas `css/` e `js/` e abra-o em um navegador. Escolha uma aba em Trackers ou Coleções por região.
 
-Na Mega Dex e no Safari Urbano, clique nas cartas para marcar ou desmarcar os Pokémon obtidos. Nos Shundos Iniciais, um clique marca Tenho em verde; dois cliques marcam Aguardando evento em amarelo. Pelo teclado, use Enter ou espaço para Tenho e Shift + Enter ou Shift + espaço para Aguardando evento.
+Nas coleções regionais, um clique marca shiny e dois cliques marcam shundo. Um shundo também conta no progresso shiny. Pelo teclado, use Enter ou espaço para shiny e Shift + Enter ou Shift + espaço para shundo. Repita a ação correspondente para desmarcar.
 
-O estado Aguardando evento indica um Pokémon que você já possui e reservou para evoluir durante um evento. Ele também entra na contagem do progresso.
+Na Mega Dex e no Safari Urbano, clique para marcar ou desmarcar o Pokémon obtido. Nos Shundos Iniciais, um clique marca Tenho e dois cliques marcam Aguardando evento, indicando que você já possui o Pokémon e o reservou para evoluir durante um evento.
 
-Abra o painel de filtros para combinar as opções da coleção. No menu Exportar, escolha PNG/SVG para a aba atual ou JSON para salvar o progresso das três abas.
+Use Ocultar ao lado de uma aba para retirá-la da navegação. Abra Abas arquivadas para restaurá-la; as marcações são mantidas.
 
-A importação substitui as marcações das coleções presentes no backup; as outras abas são preservadas. Exporte um backup antes de importar ou limpar o progresso.
+Abra Filtros para ajustar a visualização. No menu Exportar, selecione o conteúdo da lista TXT e clique em Baixar lista em texto. PNG e SVG utilizam a visualização atual da aba. JSON salva todas as coleções e a lista de abas ocultas.
+
+A importação substitui as marcações das coleções presentes no backup; as outras são preservadas. A configuração de abas ocultas só muda quando essa informação está no arquivo importado. Exporte um backup antes de importar ou limpar o progresso.
 
 ## Armazenamento do progresso
 
@@ -51,7 +60,7 @@ Não é necessário instalar dependências ou compilar o projeto. Fontes, imagen
 
 O Tracker Pokémon GO está sendo lançado em etapas, seguindo a evolução de suas funcionalidades. Cada atualização amplia os recursos disponíveis para acompanhar sua coleção.
 
-Esta atualização reúne Mega Dex, Safari Urbano e Shundos Iniciais em uma interface com abas. Novas coleções e funcionalidades serão adicionadas nas próximas atualizações.
+Esta atualização adiciona coleções regionais de shinies e shundos, exportação em texto e organização das abas. Novas coleções e funcionalidades serão adicionadas nas próximas atualizações.
 
 ## Apoio no desenvolvimento
 

@@ -2,6 +2,20 @@
 
 As datas registram a publicação de cada atualização.
 
+## Etapa 4 — Coleções regionais — 20/10/2026
+
+- Coleções de Kanto a Paldea e coleção Outros para Meltan e Melmetal, totalizando 1.025 espécies.
+- Shiny e shundo na mesma coleção, com marcação por clique e duplo clique.
+- Duas barras de progresso: shinies, incluindo shundos, e shundos.
+- Filtros de shinies/shundos coletados e faltantes, busca e filtros por tipo.
+- Imagens shiny e avisos de disponibilidade conforme os dados desta versão.
+- Disponibilidade shiny corrigida para Applin, Flapple, Appletun, Dipplin e Hydrapple; formas base de Minior, Bramblin e Brambleghast marcadas como lançadas, mantendo os avisos de shiny não liberado.
+- Exportação TXT com listas da visualização atual, dos coletados ou dos faltantes.
+- Opção de ocultar e restaurar abas sem apagar marcações.
+- Backup de todas as coleções e abas ocultas, mantendo compatibilidade com backups anteriores.
+- Mega Dex, Safari Urbano e Shundos Iniciais preservados.
+- HTML, CSS e JavaScript mantidos separados.
+
 ## Etapa 3 — Novas coleções — 15/10/2026
 
 - Navegação por abas entre Mega Dex, Safari Urbano e Shundos Iniciais.
