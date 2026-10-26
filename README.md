@@ -4,7 +4,7 @@ Um tracker de coleção para Pokémon GO, com progresso salvo no navegador.
 
 ## Coleções regionais de shinies e shundos
 
-Acompanhe suas coleções de Kanto, Johto, Hoenn, Sinnoh, Unova, Kalos, Alola, Galar, Hisui e Paldea. Uma coleção adicional, Outros, reúne Meltan e Melmetal. São 1.025 espécies, com uma forma principal por espécie nesta versão.
+Acompanhe suas coleções de Kanto, Johto, Hoenn, Sinnoh, Unova, Kalos, Alola, Galar, Hisui e Paldea. São 1.023 espécies nas abas regionais, com uma forma principal por espécie nesta versão. A aba Outros sai da navegação; as marcações existentes de Meltan e Melmetal continuam preservadas no armazenamento e nos backups.
 
 As três coleções anteriores continuam disponíveis:
 
@@ -15,7 +15,7 @@ As três coleções anteriores continuam disponíveis:
 Cada coleção possui marcações e progresso independentes.
 
 - Um clique marca shiny; dois cliques marcam shundo nas coleções regionais.
-- Duas barras regionais: shinies, incluindo shundos, e shundos separadamente.
+- Duas barras regionais lado a lado: shinies, incluindo shundos, e shundos separadamente.
 - Filtros para coletados e faltantes, além de busca e tipos de Pokémon.
 - Imagens shiny e avisos para Pokémon ou shinies não liberados conforme os dados desta versão.
 - Exportação TXT da visualização atual, dos coletados ou dos faltantes.
@@ -33,7 +33,7 @@ Nas coleções regionais, um clique marca shiny e dois cliques marcam shundo. Um
 
 Na Mega Dex e no Safari Urbano, clique para marcar ou desmarcar o Pokémon obtido. Nos Shundos Iniciais, um clique marca Tenho e dois cliques marcam Aguardando evento, indicando que você já possui o Pokémon e o reservou para evoluir durante um evento.
 
-Use Ocultar ao lado de uma aba para retirá-la da navegação. Abra Abas arquivadas para restaurá-la; as marcações são mantidas.
+Use o ícone de olho ao lado de uma aba para retirá-la da navegação. Abra Abas arquivadas para restaurá-la; as marcações são mantidas.
 
 Abra Filtros para ajustar a visualização. No menu Exportar, selecione o conteúdo da lista TXT e clique em Baixar lista em texto. PNG e SVG utilizam a visualização atual da aba. JSON salva todas as coleções e a lista de abas ocultas.
 
@@ -60,7 +60,7 @@ Não é necessário instalar dependências ou compilar o projeto. Fontes, imagen
 
 O Tracker Pokémon GO está sendo lançado em etapas, seguindo a evolução de suas funcionalidades. Cada atualização amplia os recursos disponíveis para acompanhar sua coleção.
 
-Esta atualização adiciona coleções regionais de shinies e shundos, exportação em texto e organização das abas. Novas coleções e funcionalidades serão adicionadas nas próximas atualizações.
+Esta atualização aprimora a apresentação das abas, centraliza os títulos das coleções regionais, coloca as duas barras lado a lado e amplia o seletor de exportação. Os Shundos Iniciais passam a mostrar o estado de cada carta por escrito. Novas coleções e funcionalidades serão adicionadas nas próximas atualizações.
 
 ## Apoio no desenvolvimento
 

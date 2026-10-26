@@ -137,7 +137,7 @@
         }
 
         .progress-card {
-            min-width: 230px;
+            min-width: 340px;
             padding: 14px 20px;
             background: var(--surface);
             border: 1px solid var(--border);
@@ -312,7 +312,7 @@
             z-index: 30;
             top: calc(100% + 8px);
             right: 0;
-            width: 230px;
+            width: 340px;
             padding: 7px;
             overflow: hidden;
             border: 1px solid var(--border-strong);
@@ -1023,3 +1023,21 @@
 .shiny-alert{position:absolute;bottom:8px;right:8px;color:var(--gold);font-size:17px}.card .collection-label{font-size:11px;color:var(--owned);margin-top:7px}.card.waiting .collection-label{color:var(--gold)}
 .progress-secondary{margin-top:16px;padding-top:12px;border-top:1px solid var(--border)}.progress-secondary .bar-fill{background:var(--gold)}
 select{background:var(--surface);color:var(--text);border:1px solid var(--border);padding:8px;border-radius:8px;max-width:100%}
+
+.tab-group-title{text-align:center;margin:10px 0 5px}
+.tab-entry{border:1px solid rgba(178,120,255,.24);overflow:hidden;transition:border-color .18s}
+.tab-entry:hover{border-color:rgba(178,120,255,.45)}
+.archive-icon{display:inline-flex;align-items:center;justify-content:center;flex:0 0 32px;padding:6px}
+.archive-panel button{display:inline-flex;align-items:center;gap:9px}
+header.top.regional-header{justify-content:center;align-items:center;gap:22px}
+.regional-header .title-block{flex:0 0 100%;text-align:center}
+.regional-header .title-block p{margin:10px auto 0;max-width:76ch}
+.regional-header .dual-progress{display:flex;gap:24px;width:min(100%,660px);min-width:0;text-align:center}
+.dual-progress .progress-primary,.dual-progress .progress-secondary{flex:1;min-width:0}
+.dual-progress .progress-secondary{margin:0;padding:0 0 0 24px;border-top:0;border-left:1px solid var(--border)}
+.dual-progress .num{justify-content:center}
+.export-dropdown{max-width:calc(100vw - 28px)}
+#textListMode{width:100%;padding:10px 8px;font-size:12px}
+@media(max-width:520px){.regional-header .dual-progress{gap:12px;padding:14px 12px}.dual-progress .progress-secondary{padding-left:12px}.dual-progress .num{font-size:24px;flex-wrap:wrap}.dual-progress .num span.total{font-size:12px}.dual-progress .label{font-size:11px}}
+
+[hidden]{display:none!important}

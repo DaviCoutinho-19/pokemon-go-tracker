@@ -1939,9 +1939,9 @@ function importJSONFile(file) {
                 throw new Error("Nenhum progresso reconhecido");
             }
 
-            if(Array.isArray(data.archivedTabs)){archivedTabs=new Set(data.archivedTabs.filter(id=>TABS[id]));saveArchives();}
-            if(archivedTabs.has(currentTabId)){const next=Object.keys(TABS).find(id=>!archivedTabs.has(id));if(next)currentTabId=next;}
-            const allArchived=Object.keys(TABS).every(id=>archivedTabs.has(id));
+            if(Array.isArray(data.archivedTabs)){archivedTabs=new Set(data.archivedTabs.filter(id=>TABS[id]&&id!=='region-other'));saveArchives();}
+            if(archivedTabs.has(currentTabId)){const next=navigableTabIds().find(id=>!archivedTabs.has(id));if(next)currentTabId=next;}
+            const allArchived=navigableTabIds().every(id=>archivedTabs.has(id));
             document.querySelector('header.top').hidden=allArchived;document.querySelector('.controls').hidden=allArchived;filterPanelWrap.hidden=allArchived;legend.hidden=allArchived;
             refreshTabUI();if(allArchived)grid.replaceChildren();renderTabNavigation();
             showToast("Progresso importado com sucesso.");
@@ -2084,28 +2084,29 @@ function collectionExportItems(mode){
 
 // Regional collections use owned = shiny, waiting = shundo; legacy tabs retain their meanings.
 let archivedTabs = new Set();
-try { const saved=JSON.parse(localStorage.getItem('pokemonArchivedTabs_v1')); if(Array.isArray(saved)) archivedTabs=new Set(saved.filter(id=>TABS[id])); } catch {}
+try { const saved=JSON.parse(localStorage.getItem('pokemonArchivedTabs_v1')); if(Array.isArray(saved)) archivedTabs=new Set(saved.filter(id=>TABS[id]&&id!=='region-other')); } catch {}
 const archivePanel=document.createElement('details');
 archivePanel.className='archive-panel';
 tabs.after(archivePanel);
 function saveArchives(){try{localStorage.setItem('pokemonArchivedTabs_v1',JSON.stringify([...archivedTabs]));}catch{showToast('Não foi possível salvar as abas arquivadas.');}}
-function eyeIcon(hidden){return hidden ? "Restaurar" : "Ocultar";}
+function eyeIcon(hidden){return '<svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12Z"/><circle cx="12" cy="12" r="3"/>'+(hidden?'<path d="m3 3 18 18"/>':'')+'</svg>';}
+function navigableTabIds(){return Object.keys(TABS).filter(id=>id!=='region-other');}
 function renderTabNavigation(){
  tabs.replaceChildren();
  for(const [regional,label] of [[false,'Trackers'],[true,'Coleções por região']]){
   const heading=document.createElement('div');heading.className='tab-group-title';heading.textContent=label;tabs.append(heading);
-  Object.entries(TABS).filter(([id,c])=>!!c.regional===regional&&!archivedTabs.has(id)).forEach(([id,c])=>{
+  Object.entries(TABS).filter(([id,c])=>id!=='region-other'&&!!c.regional===regional&&!archivedTabs.has(id)).forEach(([id,c])=>{
    const entry=document.createElement('div');entry.className='tab-entry';
    const btn=document.createElement('button');btn.type='button';btn.className='tab-btn'+(id===currentTabId?' active':'');btn.dataset.tab=id;btn.setAttribute('role','tab');btn.setAttribute('aria-selected',id===currentTabId?'true':'false');
    const name=document.createElement('span');name.textContent=c.regional?REGIONS.find(r=>'region-'+r[0]===id)[1]:c.pageTitle;
    const count=document.createElement('span');count.className='tab-count';count.dataset.count=id;btn.append(name,count);
    const hide=document.createElement('button');hide.className='archive-icon';hide.type='button';hide.innerHTML=eyeIcon(false);hide.title='Ocultar '+name.textContent;hide.setAttribute('aria-label',hide.title);
-   hide.onclick=()=>{archivedTabs.add(id);saveArchives();if(id===currentTabId){const next=Object.keys(TABS).find(t=>!archivedTabs.has(t));if(next)switchTab(next);else{document.querySelector('header.top').hidden=true;grid.replaceChildren();document.querySelector('.controls').hidden=true;filterPanelWrap.hidden=true;legend.hidden=true;}}renderTabNavigation();};
+   hide.onclick=()=>{archivedTabs.add(id);saveArchives();if(id===currentTabId){const next=navigableTabIds().find(t=>!archivedTabs.has(t));if(next)switchTab(next);else{document.querySelector('header.top').hidden=true;grid.replaceChildren();document.querySelector('.controls').hidden=true;filterPanelWrap.hidden=true;legend.hidden=true;}}renderTabNavigation();};
    entry.append(btn,hide);tabs.append(entry);
   });
  }
  archivePanel.replaceChildren();const summary=document.createElement('summary');summary.textContent='Abas arquivadas ('+archivedTabs.size+') · restaurar';archivePanel.append(summary);
- if(!archivedTabs.size){const note=document.createElement('p');note.textContent='Use Ocultar ao lado de uma aba para retirá-la da navegação. O progresso é mantido.';archivePanel.append(note);}
+ if(!archivedTabs.size){const note=document.createElement('p');note.textContent='Use o ícone de olho ao lado de uma aba para ocultá-la. O progresso é mantido.';archivePanel.append(note);}
  archivedTabs.forEach(id=>{const btn=document.createElement('button');btn.type='button';btn.innerHTML=eyeIcon(true);const name=document.createElement('span');name.textContent=TABS[id].pageTitle;btn.append(name);btn.title='Mostrar '+TABS[id].pageTitle;btn.setAttribute('aria-label',btn.title);btn.onclick=()=>{archivedTabs.delete(id);saveArchives();document.querySelector('header.top').hidden=false;document.querySelector('.controls').hidden=false;filterPanelWrap.hidden=false;legend.hidden=false;if(currentTabId===id)refreshTabUI();else switchTab(id);renderTabNavigation();};archivePanel.append(btn);});
  updateTabCounts();
 }
@@ -2123,7 +2124,7 @@ updateProgress=function(){originalProgress();shundoProgress.hidden=!config().reg
 const originalChrome=applyTabChrome,legacyLegend=legend.innerHTML;
 applyTabChrome=function(){originalChrome();document.querySelector('header.top').classList.toggle('regional-header',!!config().regional);progressCard.classList.toggle('dual-progress',!!config().regional);legend.innerHTML=config().regional?'<span class="legend-item">✨ Shiny · 1 clique</span><span class="legend-item">🌟 Shundo · 2 cliques</span><span class="legend-hint">Shundo também conta como shiny. ⚠ Shiny não liberado.</span>':legacyLegend;};
 const originalMark=refreshCardMark;
-refreshCardMark=function(card,p){originalMark(card,p);if(!config().regional)return;const mark=markOf(p);let label=card.querySelector('.collection-label');if(!label){label=document.createElement('div');label.className='collection-label';card.append(label);}label.textContent=config().regional?(mark===MARK_WAITING?'🌟 Shundo':mark===MARK_OWNED?'✨ Shiny':'Ainda falta'):(mark===MARK_WAITING?'◷ Aguardando evento':mark===MARK_OWNED?'✓ Já tenho':'Ainda falta');card.setAttribute('aria-label',p.name+' — '+label.textContent);
+refreshCardMark=function(card,p){originalMark(card,p);if(!config().regional&&currentTabId!=='starters')return;const mark=markOf(p);let label=card.querySelector('.collection-label');if(!label){label=document.createElement('div');label.className='collection-label';card.append(label);}label.textContent=config().regional?(mark===MARK_WAITING?'🌟 Shundo':mark===MARK_OWNED?'✨ Shiny':'Ainda falta'):(mark===MARK_WAITING?'◷ Aguardando evento':mark===MARK_OWNED?'✓ Já tenho':'Ainda falta');card.setAttribute('aria-label',p.name+' — '+label.textContent);
  if(config().regional){const icon=card.querySelector('.icon-wait');if(icon)icon.innerHTML='<path d="m12 3 2.8 5.7 6.3.9-4.6 4.5 1.1 6.3-5.6-3-5.6 3 1.1-6.3L3 9.6l6.2-.9Z"/>';}
  if(p.shinyReleased===false&&!card.querySelector('.shiny-alert')){const warning=document.createElement('span');warning.className='shiny-alert';warning.textContent='⚠';warning.title=p.released?'Shiny da forma principal ainda não liberado no Pokémon GO (aviso atualizado em 20/10/2026).':'Pokémon ainda não lançado no GO; shiny também não liberado (aviso atualizado em 20/10/2026).';warning.setAttribute('role','img');warning.setAttribute('aria-label',warning.title);card.append(warning);}
 };
@@ -2143,11 +2144,11 @@ document.getElementById('exportTextBtn').onclick=()=>{const mode=document.getEle
 // Include archived navigation in backups; accept older backups without it.
 const legacyExportJSON=exportJSON;
 exportJSON=function(){const result={exportedAt:new Date().toISOString(),archivedTabs:[...archivedTabs]};Object.values(TABS).forEach(c=>result[c.storageKey]=state[c.id].marks);const url=URL.createObjectURL(new Blob([JSON.stringify(result,null,2)],{type:'application/json'}));const a=document.createElement('a');a.href=url;a.download='pokemon-go-progresso.json';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);showToast('Backup de todas as abas exportado.');};
-if(archivedTabs.has(currentTabId)){const available=Object.keys(TABS).find(id=>!archivedTabs.has(id));if(available)currentTabId=available;}
+if(archivedTabs.has(currentTabId)){const available=navigableTabIds().find(id=>!archivedTabs.has(id));if(available)currentTabId=available;}
 
 renderTabNavigation();
 refreshTabUI();
 
 
 
-if(Object.keys(TABS).every(id=>archivedTabs.has(id))){document.querySelector('header.top').hidden=true;document.querySelector('.controls').hidden=true;filterPanelWrap.hidden=true;legend.hidden=true;grid.replaceChildren();}
+if(navigableTabIds().every(id=>archivedTabs.has(id))){document.querySelector('header.top').hidden=true;document.querySelector('.controls').hidden=true;filterPanelWrap.hidden=true;legend.hidden=true;grid.replaceChildren();}

@@ -2,6 +2,17 @@
 
 As datas registram a publicação de cada atualização.
 
+## Etapa 5 — Acabamento das abas — 26/10/2026
+
+- Títulos das coleções regionais e títulos dos grupos de abas centralizados.
+- Contornos discretos nas abas e ícones de olho para ocultar/restaurar.
+- Barras de shiny e shundo lado a lado, com adaptação para telas menores.
+- Aba Outros retirada da navegação, preservando as marcações de Meltan e Melmetal no armazenamento e nos backups.
+- Menu e seletor de exportação ampliados.
+- Estados dos Shundos Iniciais identificados por texto: Já tenho, Aguardando evento e Ainda falta.
+- Controles da coleção corretamente ocultados quando todas as abas são arquivadas.
+- Correções de disponibilidade aprovadas na etapa anterior preservadas.
+
 ## Etapa 4 — Coleções regionais — 20/10/2026
 
 - Coleções de Kanto a Paldea e coleção Outros para Meltan e Melmetal, totalizando 1.025 espécies.
