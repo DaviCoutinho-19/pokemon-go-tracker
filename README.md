@@ -29,7 +29,7 @@ Os catálogos incluem espécies ainda não lançadas. Os textos dos avisos foram
 
 Mantenha `index.html` junto das pastas `css/` e `js/` e abra-o em um navegador. Escolha uma aba em Trackers ou Coleções por região.
 
-Nas coleções regionais, um clique marca shiny e dois cliques marcam shundo. Um shundo também conta no progresso shiny. Pelo teclado, use Enter ou espaço para shiny e Shift + Enter ou Shift + espaço para shundo. Repita a ação correspondente para desmarcar.
+Nas coleções regionais, um clique marca shiny e dois cliques marcam shundo. Um shundo também conta no progresso shiny. Pelo teclado, use Enter ou espaço para shiny e Shift + Enter ou Shift + espaço para shundo. Repita a ação correspondente para desmarcar. A marcação shiny responde imediatamente ao primeiro clique. Com filtro de status ativo, uma carta que deixou de corresponder ao filtro permanece brevemente na tela para permitir o duplo clique de shundo, antes de a lista se reorganizar.
 
 Na Mega Dex e no Safari Urbano, clique para marcar ou desmarcar o Pokémon obtido. Nos Shundos Iniciais, um clique marca Tenho e dois cliques marcam Aguardando evento, indicando que você já possui o Pokémon e o reservou para evoluir durante um evento.
 
@@ -60,7 +60,7 @@ Não é necessário instalar dependências ou compilar o projeto. Fontes, imagen
 
 O Tracker Pokémon GO está sendo lançado em etapas, seguindo a evolução de suas funcionalidades. Cada atualização amplia os recursos disponíveis para acompanhar sua coleção.
 
-Esta atualização aprimora a apresentação das abas, centraliza os títulos das coleções regionais, coloca as duas barras lado a lado e amplia o seletor de exportação. Os Shundos Iniciais passam a mostrar o estado de cada carta por escrito. Novas coleções e funcionalidades serão adicionadas nas próximas atualizações.
+Esta atualização torna a resposta ao clique imediata nas coleções regionais e melhora a marcação por duplo clique quando há filtros de status ativos. Novas coleções e funcionalidades serão adicionadas nas próximas atualizações.
 
 ## Apoio no desenvolvimento
 

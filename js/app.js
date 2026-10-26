@@ -1230,7 +1230,7 @@ function render() {
 
         refreshCardMark(card, p);
 
-        function applyMark(mark) {
+        function applyMark(mark, deferFilterRender = false) {
 
             if (currentTabId !== actionTabId) return;
             setMark(p, mark);
@@ -1238,7 +1238,7 @@ function render() {
             updateProgress();
 
             /* Com filtro de status ativo o card pode sair da lista. */
-            if (st().statusFilter !== "all") {
+            if (st().statusFilter !== "all" && !deferFilterRender) {
                 render();
             }
 
@@ -1258,7 +1258,30 @@ function render() {
             );
         }
 
-        if (config().hasWaitingState) {
+        if (config().regional) {
+            let firstClickMark = MARK_NONE;
+            let filterRenderTimer = null;
+            function scheduleFilteredRender() {
+                clearTimeout(filterRenderTimer);
+                if (st().statusFilter === "all") return;
+                // Preserve the card through the double-click, then reconcile the filter.
+                filterRenderTimer = setTimeout(() => {
+                    if (currentTabId === actionTabId && card.isConnected) render();
+                }, 600);
+            }
+            card.addEventListener("click", event => {
+                if (currentTabId !== actionTabId || event.detail > 1) return;
+                firstClickMark = markOf(p);
+                applyMark(firstClickMark === MARK_OWNED ? MARK_NONE : MARK_OWNED, true);
+                scheduleFilteredRender();
+            });
+            card.addEventListener("dblclick", () => {
+                if (currentTabId !== actionTabId) return;
+                clearTimeout(filterRenderTimer);
+                applyMark(firstClickMark === MARK_WAITING ? MARK_NONE : MARK_WAITING, true);
+                scheduleFilteredRender();
+            });
+        } else if (config().hasWaitingState) {
 
             /*
              * Distingue 1 de 2 cliques: o primeiro clique agenda a ação

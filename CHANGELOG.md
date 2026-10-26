@@ -2,6 +2,14 @@
 
 As datas registram a publicação de cada atualização.
 
+## Etapa 6 — Resposta ao clique — 26/10/2026
+
+- Marcação shiny imediata nas coleções regionais, eliminando a espera de 230 ms do clique simples.
+- Duplo clique continua marcando ou desmarcando shundo sem contagem duplicada.
+- Com filtros de status ativos, a carta permanece por uma breve janela antes de a lista se reorganizar, permitindo concluir o duplo clique.
+- Ações pendentes permanecem vinculadas à aba original e não alteram outra coleção ao navegar.
+- Comportamento da Mega Dex, do Safari Urbano e dos Shundos Iniciais preservado.
+
 ## Etapa 5 — Acabamento das abas — 26/10/2026
 
 - Títulos das coleções regionais e títulos dos grupos de abas centralizados.
