@@ -2,6 +2,14 @@
 
 As datas registram a publicação de cada atualização.
 
+## Etapa 7 — Baralhos, início e exportação — 27/10/2026
+
+- Formas alternativas agrupadas em baralhos expansíveis, mantendo uma contagem por espécie.
+- Expansão ao segurar a carta e controle para expandir/recolher as formas.
+- Página inicial com atalhos às coleções, resumo dos progressos e acesso ao backup.
+- Seleção de conteúdo aplicada às exportações TXT, PNG e SVG.
+- Estrela para shundos nas exportações e relógio preservado para iniciais aguardando evento.
+
 ## Etapa 6 — Resposta ao clique — 26/10/2026
 
 - Marcação shiny imediata nas coleções regionais, eliminando a espera de 230 ms do clique simples.

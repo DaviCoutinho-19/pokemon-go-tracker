@@ -4,7 +4,7 @@ Um tracker de coleção para Pokémon GO, com progresso salvo no navegador.
 
 ## Coleções regionais de shinies e shundos
 
-Acompanhe suas coleções de Kanto, Johto, Hoenn, Sinnoh, Unova, Kalos, Alola, Galar, Hisui e Paldea. São 1.023 espécies nas abas regionais, com uma forma principal por espécie nesta versão. A aba Outros sai da navegação; as marcações existentes de Meltan e Melmetal continuam preservadas no armazenamento e nos backups.
+Acompanhe suas coleções de Kanto, Johto, Hoenn, Sinnoh, Unova, Kalos, Alola, Galar, Hisui e Paldea. São 1.023 espécies nas abas regionais, com formas alternativas agrupadas em baralhos e uma única contagem por espécie. A aba Outros sai da navegação; as marcações existentes de Meltan e Melmetal continuam preservadas no armazenamento e nos backups.
 
 As três coleções anteriores continuam disponíveis:
 
@@ -19,7 +19,7 @@ Cada coleção possui marcações e progresso independentes.
 - Filtros para coletados e faltantes, além de busca e tipos de Pokémon.
 - Imagens shiny e avisos para Pokémon ou shinies não liberados conforme os dados desta versão.
 - Exportação TXT da visualização atual, dos coletados ou dos faltantes.
-- Exportação PNG/SVG da visualização atual, com marca d'água.
+- Exportação TXT/PNG/SVG conforme o conteúdo selecionado, com marca d'água nas imagens.
 - Abas que podem ser ocultadas e restauradas sem apagar o progresso.
 - Backup JSON de todas as coleções e das abas ocultas, com importação de backups anteriores.
 
@@ -27,7 +27,7 @@ Os catálogos incluem espécies ainda não lançadas. Os textos dos avisos foram
 
 ## Como usar
 
-Mantenha `index.html` junto das pastas `css/` e `js/` e abra-o em um navegador. Escolha uma aba em Trackers ou Coleções por região.
+Mantenha `index.html` junto das pastas `css/` e `js/` e abra-o em um navegador. A página inicial reúne atalhos às coleções, resumos de progresso e acesso ao backup. Nas coleções regionais, segure uma carta com baralho para expandir suas formas; use o controle de formas para expandir ou recolher. As formas compartilham uma única contagem por espécie.
 
 Nas coleções regionais, um clique marca shiny e dois cliques marcam shundo. Um shundo também conta no progresso shiny. Pelo teclado, use Enter ou espaço para shiny e Shift + Enter ou Shift + espaço para shundo. Repita a ação correspondente para desmarcar. A marcação shiny responde imediatamente ao primeiro clique. Com filtro de status ativo, uma carta que deixou de corresponder ao filtro permanece brevemente na tela para permitir o duplo clique de shundo, antes de a lista se reorganizar.
 
@@ -35,7 +35,7 @@ Na Mega Dex e no Safari Urbano, clique para marcar ou desmarcar o Pokémon obtid
 
 Use o ícone de olho ao lado de uma aba para retirá-la da navegação. Abra Abas arquivadas para restaurá-la; as marcações são mantidas.
 
-Abra Filtros para ajustar a visualização. No menu Exportar, selecione o conteúdo da lista TXT e clique em Baixar lista em texto. PNG e SVG utilizam a visualização atual da aba. JSON salva todas as coleções e a lista de abas ocultas.
+Abra Filtros para ajustar a visualização. No menu Exportar, selecione o conteúdo para TXT, PNG ou SVG: visualização atual, coletados ou faltantes. Nas imagens exportadas, shundos usam uma estrela e os iniciais aguardando evento mantêm o relógio. JSON salva todas as coleções e a lista de abas ocultas.
 
 A importação substitui as marcações das coleções presentes no backup; as outras são preservadas. A configuração de abas ocultas só muda quando essa informação está no arquivo importado. Exporte um backup antes de importar ou limpar o progresso.
 
@@ -60,7 +60,7 @@ Não é necessário instalar dependências ou compilar o projeto. Fontes, imagen
 
 O Tracker Pokémon GO está sendo lançado em etapas, seguindo a evolução de suas funcionalidades. Cada atualização amplia os recursos disponíveis para acompanhar sua coleção.
 
-Esta atualização torna a resposta ao clique imediata nas coleções regionais e melhora a marcação por duplo clique quando há filtros de status ativos. Novas coleções e funcionalidades serão adicionadas nas próximas atualizações.
+Esta atualização reúne baralhos de formas alternativas, uma página inicial com resumo das coleções e melhorias nas exportações de texto e imagem. Novas coleções e funcionalidades serão adicionadas nas próximas atualizações.
 
 ## Apoio no desenvolvimento
 
