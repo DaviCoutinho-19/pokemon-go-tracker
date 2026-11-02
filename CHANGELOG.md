@@ -2,6 +2,17 @@
 
 As datas registram a publicação de cada atualização.
 
+## Etapa 10 — Regiões, formas e disponibilidade — 02/11/2026
+
+- Publicação única reunindo as etapas 10, 11 e 12 do cronograma.
+- Seleção de várias regiões por gesto de segurar ou F2, com visualização combinada e gravação na região original.
+- Limpeza da visualização combinada aplicada às regiões exibidas, após confirmação.
+- As 28 formas do Unown agrupadas com contagem única por espécie.
+- Mais baralhos de Burmy, Cherrim, Shellos, Gastrodon, Deerling, Sawsbuck e Tornadus/Thundurus/Landorus.
+- Controles separados Exibir/Ocultar para Pokémon não lançados e shinies não liberados, com persistência local.
+- Cartas e exportações respeitam os controles de disponibilidade; marcações e backups são preservados.
+- Correções de disponibilidade de Minior, Bramblin, Brambleghast e família Applin preservadas.
+
 ## Etapa 7 — Baralhos, início e exportação — 27/10/2026
 
 - Formas alternativas agrupadas em baralhos expansíveis, mantendo uma contagem por espécie.

@@ -15,6 +15,10 @@ As três coleções anteriores continuam disponíveis:
 Cada coleção possui marcações e progresso independentes.
 
 - Um clique marca shiny; dois cliques marcam shundo nas coleções regionais.
+- Visualização de várias regiões juntas, com as marcações salvas na região original de cada Pokémon.
+- As 28 formas do Unown em um baralho, mantendo uma contagem por espécie.
+- Mais formas de Burmy, Cherrim, Shellos, Gastrodon, Deerling, Sawsbuck e Tornadus/Thundurus/Landorus.
+- Controles separados para exibir ou ocultar Pokémon não lançados e shinies não liberados.
 - Duas barras regionais lado a lado: shinies, incluindo shundos, e shundos separadamente.
 - Filtros para coletados e faltantes, além de busca e tipos de Pokémon.
 - Imagens shiny e avisos para Pokémon ou shinies não liberados conforme os dados desta versão.
@@ -33,9 +37,13 @@ Nas coleções regionais, um clique marca shiny e dois cliques marcam shundo. Um
 
 Na Mega Dex e no Safari Urbano, clique para marcar ou desmarcar o Pokémon obtido. Nos Shundos Iniciais, um clique marca Tenho e dois cliques marcam Aguardando evento, indicando que você já possui o Pokémon e o reservou para evoluir durante um evento.
 
+Para reunir regiões, segure uma aba ou um atalho regional na página inicial, selecione as demais regiões e clique em Ver juntas. No teclado, F2 também inicia ou altera a seleção. Marcar um Pokémon nessa visualização atualiza sua região de origem; limpar o progresso da visualização combinada limpa as regiões reunidas, após confirmação.
+
 Use o ícone de olho ao lado de uma aba para retirá-la da navegação. Abra Abas arquivadas para restaurá-la; as marcações são mantidas.
 
 Abra Filtros para ajustar a visualização. No menu Exportar, selecione o conteúdo para TXT, PNG ou SVG: visualização atual, coletados ou faltantes. Nas imagens exportadas, shundos usam uma estrela e os iniciais aguardando evento mantêm o relógio. JSON salva todas as coleções e a lista de abas ocultas.
+
+Os controles Shinies não liberados e Pokémon não liberados possuem opções Exibir e Ocultar independentes. Eles filtram as cartas e as exportações sem apagar marcações. As barras mantêm o total de espécies da coleção. A escolha fica salva neste navegador, e Limpar filtros restaura a exibição de todos.
 
 A importação substitui as marcações das coleções presentes no backup; as outras são preservadas. A configuração de abas ocultas só muda quando essa informação está no arquivo importado. Exporte um backup antes de importar ou limpar o progresso.
 
@@ -60,7 +68,7 @@ Não é necessário instalar dependências ou compilar o projeto. Fontes, imagen
 
 O Tracker Pokémon GO está sendo lançado em etapas, seguindo a evolução de suas funcionalidades. Cada atualização amplia os recursos disponíveis para acompanhar sua coleção.
 
-Esta atualização reúne baralhos de formas alternativas, uma página inicial com resumo das coleções e melhorias nas exportações de texto e imagem. Novas coleções e funcionalidades serão adicionadas nas próximas atualizações.
+Esta atualização permite reunir várias regiões na mesma visualização, adiciona as 28 formas do Unown e mais formas alternativas, além de controles separados de disponibilidade de Pokémon e shinies. Novas coleções e funcionalidades serão adicionadas nas próximas atualizações.
 
 ## Apoio no desenvolvimento
 
